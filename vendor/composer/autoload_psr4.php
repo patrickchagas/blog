@@ -6,4 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Pcode\\' => array($vendorDir . '/patrickchagas21/php-classes/src'),
 );
