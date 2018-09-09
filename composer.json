@@ -1,0 +1,17 @@
+{
+    "name": "patrickchagas21/blog",
+    "description": "Blog - Treinamentos PHP 7",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Patrick Chagas",
+            "email": "patrickchagas21@gmail.com"
+        }
+    ],
+    "require": {
+    	"phpmailer/phpmailer":"5.2.22",
+    	"slim/slim":"2.0",
+    	"rain/raintpl":"3.0.0"
+    }
+}
