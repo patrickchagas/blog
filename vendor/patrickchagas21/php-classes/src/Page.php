@@ -12,14 +12,15 @@ class Page {
 		"data"=>[]
 	];
 
-	public function __construct($opts = array()) {
+	//$tpl_dir -> Por Padrão, se não passar nenhum parâmetro, O Padrão é /views/
+	public function __construct($opts = array(), $tpl_dir =  "/views/") {
 
 		//O ultimo array sempre vai sobrescrever os anteriores
 		$this->options = array_merge($this->defaults, $opts);		
 
 		// config
 			$config = array(
-			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/",
+			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"].$tpl_dir,
 			"cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
 			"debug"         => false // set to false to improve the speed
 		);
