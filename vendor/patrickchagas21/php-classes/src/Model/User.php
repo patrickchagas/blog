@@ -78,6 +78,84 @@ class User extends Model {
 
 	}
 
+	//Listar todos os usuários
+
+	public static function listAll() 
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) ORDER BY b.person");
+
+	}
+
+	//Salvar no banco os dados que o usuário cadastrou
+	public function save()
+	{
+
+		$sql = new Sql();
+		$results = $sql->select("CALL sp_users_save(:person, :login, :password, :email, :phone, :inadmin)", array(
+			":person"=>utf8_decode($this->getperson()),
+			":login"=>$this->getlogin(),
+			":password"=>User::getPasswordHash($this->getpassword()),
+			":email"=>$this->getemail(),
+			":phone"=>$this->getphone(),
+			":inadmin"=>$this->getinadmin()
+		));
+
+		$this->setData($results[0]);
+
+	}
+
+	public static function getPasswordHash($password)
+	{
+
+		return password_hash($password, PASSWORD_DEFAULT, [
+			'cost'=>12
+		]);
+	}
+
+	public function get($iduser)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser", array(
+			":iduser"=>$iduser
+		));
+
+		$this->setData($results[0]);
+	}
+
+	public function update()
+	{
+
+		$sql = new Sql();
+		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :person, :login, :password, :email, :phone, :inadmin)", array(
+			":iduser"=>$this->getiduser(),
+			":person"=>utf8_decode($this->getperson()),
+			":login"=>$this->getlogin(),
+			":password"=>User::getPasswordHash($this->getpassword()),
+			":email"=>$this->getemail(),
+			":phone"=>$this->getphone(),
+			":inadmin"=>$this->getinadmin()
+		));
+
+		$this->setData($results[0]);
+
+	}
+
+	public function delete()
+	{
+
+		$sql = new Sql();
+
+		$sql->query("CALL sp_users_delete(:iduser)", array(
+			"iduser"=>$this->getiduser()
+		));
+
+	}
+
 }
 
 ?>
