@@ -4,10 +4,13 @@ namespace Pcode\Model;
 
 use \Pcode\DB\Sql;
 use \Pcode\Model;
+use \Pcode\Mailer;
 
 class User extends Model {
 
 	const SESSION = "User"; 
+
+	const SECRET = "Pcode_Secret";
 
 	public static function login($login, $password) 
 	{	
@@ -155,6 +158,128 @@ class User extends Model {
 		));
 
 	}
+
+	public static function getForgot($email, $inadmin = true)
+	{
+
+		$sql = new Sql();
+
+		//Verificar se o email está cadastrado no banco
+		$results = $sql->select("
+			SELECT *
+			FROM tb_persons a
+			INNER JOIN tb_users b USING(idperson)
+			WHERE a.email = :email;
+		", array(
+			":email"=>$email
+		));
+
+		//Se ele não encontrar um email
+		if (count($results) === 0) 
+		{
+			throw new \Exception("Não foi possível recuperar a senha.");
+			
+		} 
+	
+		else
+
+		{ // se ele encontrar um email
+
+			//Vamos criar um novo registro na tabela de recuperação de senhas
+			$data = $results[0];
+	
+			$results2 = $sql->select("CALL sp_userspasswordsrecoveries_create(:iduser, :ip)", array(
+	             ":iduser"=>$data['iduser'],
+	             ":ip"=>$_SERVER['REMOTE_ADDR']
+	        ));
+
+			if (count($results2) === 0)
+			{
+
+				throw new \Exception("Não possível recuperar a senha.");
+			}
+
+			else
+			{ 
+				//Criptografar
+	             $dataRecovery = $results2[0];
+	             $iv = random_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+	             $code = openssl_encrypt($dataRecovery['idrecovery'], 'aes-256-cbc', User::SECRET, 0, $iv);
+	             $result = base64_encode($iv.$code);
+	             if ($inadmin === true) {
+	                 $link = "http://www.blog.com.br/admin/forgot/reset?code=$result";
+	             } else {
+	                 $link = "http://www.blog.com.br/forgot/reset?code=$result";
+	             } 
+	             $mailer = new Mailer($data['email'], $data['person'], "Redefinir senha do Blog", "forgot", array(
+	                 "name"=>$data['person'],
+	                 "link"=>$link
+	             )); 
+	             $mailer->send();
+	             return $link;
+
+			}
+
+		}
+	}
+
+	//Decriptar
+	 public static function validForgotDecrypt($result)
+	 {
+	     $result = base64_decode($result);
+	     $code = mb_substr($result, openssl_cipher_iv_length('aes-256-cbc'), null, '8bit');
+	     $iv = mb_substr($result, 0, openssl_cipher_iv_length('aes-256-cbc'), '8bit');;
+	     $idrecovery = openssl_decrypt($code, 'aes-256-cbc', User::SECRET, 0, $iv);
+
+	     $sql = new Sql();
+
+	     $results = $sql->select("
+	         SELECT *
+	         FROM tb_userspasswordsrecoveries a
+	         INNER JOIN tb_users b USING(iduser)
+	         INNER JOIN tb_persons c USING(idperson)
+	         WHERE
+	         a.idrecovery = :idrecovery
+	         AND
+	         a.dtrecovery IS NULL
+	         AND
+	         DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW();
+	     ", array(
+	         ":idrecovery"=>$idrecovery
+	     ));
+
+	    if (count($results) === 0)
+	     {
+
+	         throw new \Exception("Não foi possível recuperar a senha.");
+	     }
+
+	     else
+
+	     {
+	         return $results[0];
+	     }
+
+	     
+ 	}
+
+ 	public static function setForgotUsed($idrecovery)
+ 	{
+ 		$sql = new Sql();
+ 		$sql->query("UPDATE tb_userspasswordsrecoveries SET dtrecovery = NOW() WHERE
+ 			idrecovery = :idrecovery", array(
+ 				":idrecovery"=>$idrecovery
+ 			));
+ 	}
+
+ 	public function setPassword($password)
+ 	{
+ 		$sql = new Sql();
+ 		$sql->query("UPDATE tb_users SET password = :password WHERE iduser = :iduser", array(
+ 			"password"=>$password,
+ 			"iduser"=>$this->getiduser()
+ 		));
+ 	}
 
 }
 
