@@ -63,12 +63,21 @@
 			
 			<ul class="main-menu" id="main-menu">
 				<li><a href="#">NEWS</a></li>
+
 				<li class="drop-down"><a href="#">GUIDES & ANALYTICS<i class="ion-arrow-down-b"></i></a>
 					<ul class="drop-down-menu drop-down-inner">
 						<li><a href="#">PAGE 1</a></li>
 						<li><a href="#">PAGE 2</a></li>
 					</ul>
 				</li>
+
+				<li class="drop-down"><a href="#">CATEGORIES<i class="ion-arrow-down-b"></i></a>
+					<ul class="drop-down-menu drop-down-inner">
+						<?php require $this->checkTemplate("categories-menu");?>
+					</ul>
+				</li>
+
+
 				<li><a href="#">EVENTS</a></li>
 				<li><a href="#">EXPLAINED</a></li>
 				<li><a href="#">CONTACT US</a></li>
