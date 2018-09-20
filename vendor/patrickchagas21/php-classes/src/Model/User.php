@@ -97,6 +97,7 @@ class User extends Model {
 	{
 
 		$sql = new Sql();
+
 		$results = $sql->select("CALL sp_users_save(:person, :login, :password, :email, :phone, :inadmin)", array(
 			":person"=>utf8_decode($this->getperson()),
 			":login"=>$this->getlogin(),
@@ -108,14 +109,6 @@ class User extends Model {
 
 		$this->setData($results[0]);
 
-	}
-
-	public static function getPasswordHash($password)
-	{
-
-		return password_hash($password, PASSWORD_DEFAULT, [
-			'cost'=>12
-		]);
 	}
 
 	public function get($iduser)
@@ -280,6 +273,14 @@ class User extends Model {
  			"iduser"=>$this->getiduser()
  		));
  	}
+
+ 	public static function getPasswordHash($password)
+	{
+
+		return password_hash($password, PASSWORD_DEFAULT, [
+			'cost'=>12
+		]);
+	}
 
 }
 

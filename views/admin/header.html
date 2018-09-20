@@ -258,8 +258,13 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
+
+        <li class="active"><a href="/admin"><i class="fa fa-users"></i> <span>Home</span></a></li>
+
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuário</span></a></li>
+        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuário</span></a></li>
+
+        <li><a href="/admin/categories"><i class="fa fa-users"></i> <span>Categoria</span></a></li>
 
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
 

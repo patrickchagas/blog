@@ -23,10 +23,13 @@ class Model {
 
 		switch ($method) {
 			case "get":
-				return $this->values[$fieldName];
+				// Se foi definido, retorna ele
+				//Se não foi definido, returna NULL
+				return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL ;
 			break;
 			
 			case "set":
+				// ARGS nesse caso, é o valor que foi passado pra esse atributo
 				$this->values[$fieldName] = $args[0];
 			break;
 			
@@ -34,6 +37,7 @@ class Model {
 
 	}
 
+	//Fazer os setters de automatico de todos os campos que veio do banco de dados e não de forma estatica
 	//Chamar todos os setters
 	public function setData($data = array())
 	{
