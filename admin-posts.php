@@ -11,11 +11,11 @@ $app->get('/admin/posts', function () {
 	User::verifyLogin();
 
 	$posts = Post::listAll();
-
+	
 	$page = new PageAdmin();
 
 	$page->setTpl('posts', array(
-		'posts'=>$posts
+		'posts'=>Post::checklist($posts)
 	));
 
 });

@@ -2,13 +2,21 @@
 
 use \Pcode\Page;
 use \Pcode\Model\Category;
+use \Pcode\Model\Post;
 
 //Página Inicial
 $app->get('/', function() {
 
 	$page = new Page();
 
-	$page->setTpl("index");
+	//Listar todas as postagens
+	$posts = Post::listAll();
+
+	//var_dump($posts);
+
+	$page->setTpl("index", array(
+		'posts'=>Post::checkList($posts)
+	));
 
 });
 

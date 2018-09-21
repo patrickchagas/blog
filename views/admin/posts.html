@@ -3,11 +3,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Lista de Produtos
+    Lista de Postagens
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active"><a href="/admin/products">Produtos</a></li>
+    <li class="active"><a href="/admin/posts">Postagens</a></li>
   </ol>
 </section>
 
@@ -40,7 +40,7 @@
                   {loop="$posts"}
                   <tr>
                     <td>{$value.idpost}</td>
-                    <td>IMAGEM AQUI</td>
+                    <td><img src="{$value.desphoto}" width=150px"></td>
                     <td>{$value.title}</td>
                     <td>{$value.description}</td>
                     <td>{$value.dtregister}</td>
