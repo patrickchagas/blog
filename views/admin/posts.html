@@ -1,0 +1,66 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Lista de Produtos
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active"><a href="/admin/products">Produtos</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="row">
+  	<div class="col-md-12">
+  		<div class="box box-primary">
+            
+            <div class="box-header">
+              <a href="/admin/posts/create" class="btn btn-success">Cadastrar Postagem</a>
+            </div>
+
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <!-- <th style="width: 10px">#</th> -->
+                    <th>N°</th>
+                    <th>Imagem</th>
+                    <th>Titulo</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th>Exibição</th>
+                    <th style="width: 140px">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$posts"}
+                  <tr>
+                    <td>{$value.idpost}</td>
+                    <td>IMAGEM AQUI</td>
+                    <td>{$value.title}</td>
+                    <td>{$value.description}</td>
+                    <td>{$value.dtregister}</td>
+                    <td>{$value.active}</td>
+
+                    <td>
+                      <a href="/admin/posts/{$value.idpost}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                      <a href="/admin/posts/{$value.idpost}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                    </td>
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  	</div>
+  </div>
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

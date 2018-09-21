@@ -262,9 +262,11 @@ desired effect
         <li class="active"><a href="/admin"><i class="fa fa-users"></i> <span>Home</span></a></li>
 
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuário</span></a></li>
+        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
 
-        <li><a href="/admin/categories"><i class="fa fa-users"></i> <span>Categoria</span></a></li>
+        <li><a href="/admin/categories"><i class="fa fa-users"></i> <span>Categorias</span></a></li>
+
+        <li><a href="/admin/posts"><i class="fa fa-users"></i> <span>Posts</span></a></li>
 
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
 
