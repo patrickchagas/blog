@@ -116,6 +116,34 @@ class Category extends Model{
 			}
 	}
 
+	public function getPostsPage($page = 1, $itemsPerPage = 3)
+	{
+
+		$start = ($page-1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+				SELECT SQL_CALC_FOUND_ROWS* 
+				FROM tb_posts a 
+				INNER JOIN tb_postscategories b ON a.idpost = b.idpost
+				INNER JOIN tb_categories c ON c.idcategory = b.idcategory
+				WHERE c.idcategory = :idcategory
+				LIMIT $start, $itemsPerPage;
+			", array(
+				':idcategory'=>$this->getidcategory()
+			));
+
+		$resultsTotal = $sql->select("SELECT FOUND_ROWS() as nrtotal;");
+
+		return array(
+			'data'=>Post::checkList($results),
+			'total'=>(int)$resultsTotal[0]["nrtotal"],
+			'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage)
+		);
+
+	}
+
 	//Adicionar uma postagem a uma categoria
 	public function addPost(Post $post)
 	{
@@ -143,10 +171,6 @@ class Category extends Model{
 		));
 
 	}
-
-	
-
-
 }
 
 ?>

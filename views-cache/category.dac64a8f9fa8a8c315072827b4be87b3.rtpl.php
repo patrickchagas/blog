@@ -115,30 +115,33 @@
 </style>
 
 <div class="container">
-	<div class="row">
-		<div class="col col-xs-12">
+    <div class="row">
+        <div class="col col-xs-12">
             <h4 class="p-title"><b><?php echo htmlspecialchars( $category["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></h4>
-                        <div class="blog-grids">
+            <div class="blog-grids">
 
-                            <?php $counter1=-1;  if( isset($posts) && ( is_array($posts) || $posts instanceof Traversable ) && sizeof($posts) ) foreach( $posts as $key1 => $value1 ){ $counter1++; ?>
+                <?php $counter1=-1;  if( isset($posts) && ( is_array($posts) || $posts instanceof Traversable ) && sizeof($posts) ) foreach( $posts as $key1 => $value1 ){ $counter1++; ?>
 
-                                <div class="grid">
-                                    <div class="entry-media">
-                                        <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
-                                    </div>
-                                    <div class="entry-body">
-                                        <span class="cat"><a href="/categories/<?php echo htmlspecialchars( $category["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $category["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></a>
-                                        <h3><a href="/posts/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></h3>
-                                        <p><?php echo htmlspecialchars( $value1["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-                                        <div class="read-more-date">
-                                            <a href="#">Read More..</a>
-                                            <span class="date"><?php echo formatDate($value1["dtregister"]); ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                    
+                <div class="grid">
+                    <div class="entry-media">
+                        <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                    </div>
+                        <div class="entry-body">
+                        <span class="cat"><a href="/categories/<?php echo htmlspecialchars( $category["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $category["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></a>
+                        <h3><a href="/posts/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></h3>
+                        <p><?php echo htmlspecialchars( $value1["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+
+                        <div class="read-more-date">
+                            <a href="#">Read More..</a>
+                            <span class="date"><?php echo formatDate($value1["dtregister"]); ?></span>
                         </div>
-                    </div>                 
+                    </div>
+                </div>
+                <?php } ?>
+
+            </div>
+        </div>                 
     </div>
+    
+        <?php require $this->checkTemplate("pagination");?>
 </div>

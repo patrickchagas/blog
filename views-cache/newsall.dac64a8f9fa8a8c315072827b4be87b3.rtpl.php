@@ -18,4 +18,7 @@
 	<?php } ?>
 </div><!-- row -->
 
+
+<?php require $this->checkTemplate("pagination");?>
+
 <a class="dplay-block btn-brdr-primary mt-20 mb-md-50" href="#"><b>VIEW MORE</b></a>
