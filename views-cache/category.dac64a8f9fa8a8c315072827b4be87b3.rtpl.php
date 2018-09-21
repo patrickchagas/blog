@@ -120,19 +120,19 @@
             <h4 class="p-title"><b><?php echo htmlspecialchars( $category["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></h4>
                         <div class="blog-grids">
 
-                            <?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
+                            <?php $counter1=-1;  if( isset($posts) && ( is_array($posts) || $posts instanceof Traversable ) && sizeof($posts) ) foreach( $posts as $key1 => $value1 ){ $counter1++; ?>
 
                                 <div class="grid">
                                     <div class="entry-media">
-                                        <img src="http://www.csshint.com/wp-content/uploads/2017/09/beautiful-buttons-effect.jpg" alt="">
+                                        <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                                     </div>
                                     <div class="entry-body">
-                                        <span class="cat">inspiration</span>
-                                        <h3><a href="#">Beautiful css3 buttons with hover effects</a></h3>
-                                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut..</p>
+                                        <span class="cat"><a href="/categories/<?php echo htmlspecialchars( $category["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $category["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></a>
+                                        <h3><a href="/posts/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></h3>
+                                        <p><?php echo htmlspecialchars( $value1["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
                                         <div class="read-more-date">
                                             <a href="#">Read More..</a>
-                                            <span class="date">3 Hours ago</span>
+                                            <span class="date"><?php echo formatDate($value1["dtregister"]); ?></span>
                                         </div>
                                     </div>
                                 </div>

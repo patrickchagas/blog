@@ -22,17 +22,17 @@
           <div class="box-body">
             <div class="form-group">
               <label for="title">Nome da Postagem</label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Digite o nome do produto" value="<?php echo htmlspecialchars( $post["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <input type="text" class="form-control" id="title" name="title" placeholder="Digite o Titulo da postagem" value="<?php echo htmlspecialchars( $post["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
               
             <div class="form-group">
               <label for="description">Descrição</label>
-              <input type="text" class="form-control" id="description" name="description" placeholder="Digite o nome do produto" value="<?php echo htmlspecialchars( $post["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <textarea type="text" class="form-control" id="description" name="description" placeholder="Digite sobre a postagem" rows="8"><?php echo htmlspecialchars( $post["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
             </div>
 
             <div class="form-group">
               <label for="desurl">Url</label>
-              <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome do produto" value="<?php echo htmlspecialchars( $post["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome da postagem" value="<?php echo htmlspecialchars( $post["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
 
             <div class="checkbox">
@@ -45,7 +45,7 @@
               <input type="file" class="form-control" id="file" name="file" value="">
               <div class="box box-widget">
                 <div class="box-body">
-                  <img class="img-responsive" id="image-preview" src="<?php echo htmlspecialchars( $post["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo">
+                  <img class="img-responsive" id="image-preview" src="<?php echo htmlspecialchars( $post["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo" width="550px">
                 </div>
               </div>
             </div>

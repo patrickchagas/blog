@@ -120,19 +120,19 @@
             <h4 class="p-title"><b>{$category.descategory}</b></h4>
                         <div class="blog-grids">
 
-                            {loop="$products"}
+                            {loop="$posts"}
 
                                 <div class="grid">
                                     <div class="entry-media">
-                                        <img src="http://www.csshint.com/wp-content/uploads/2017/09/beautiful-buttons-effect.jpg" alt="">
+                                        <img src="{$value.desphoto}" alt="">
                                     </div>
                                     <div class="entry-body">
-                                        <span class="cat">inspiration</span>
-                                        <h3><a href="#">Beautiful css3 buttons with hover effects</a></h3>
-                                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut..</p>
+                                        <span class="cat"><a href="/categories/{$category.idcategory}">{$category.descategory}</span></a>
+                                        <h3><a href="/posts/{$value.desurl}">{$value.title}</a></h3>
+                                        <p>{$value.description}</p>
                                         <div class="read-more-date">
                                             <a href="#">Read More..</a>
-                                            <span class="date">3 Hours ago</span>
+                                            <span class="date">{function="formatDate($value.dtregister)"}</span>
                                         </div>
                                     </div>
                                 </div>

@@ -4,6 +4,7 @@ namespace Pcode\Model;
 
 use \Pcode\DB\Sql;
 use \Pcode\Model;
+use \Pcode\Model\Post;
 
 class Category extends Model{
 
@@ -76,6 +77,70 @@ class Category extends Model{
 		}
 
 		file_put_contents($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "categories-menu.html", implode('', $html));
+
+	}
+
+	//Trazer todos as postagens // posts vs categorias
+	public function getPosts($related = true)
+	{
+
+		$sql = new Sql();
+
+		if($related === true) {
+
+			return $sql->select("
+
+					SELECT * FROM tb_posts WHERE idpost IN(
+						SELECT a.idpost
+						FROM tb_posts a
+						INNER JOIN tb_postscategories b ON A.idpost = b.idpost
+						WHERE b.idcategory = :idcategory
+					);
+				", array(
+					':idcategory'=>$this->getidcategory()
+				));
+
+		} else {
+
+			return $sql->select("
+
+					SELECT * FROM tb_posts WHERE idpost NOT IN(
+						SELECT a.idpost
+						FROM tb_posts a
+						INNER JOIN tb_postscategories b ON A.idpost = b.idpost
+						WHERE b.idcategory = :idcategory
+					);	
+				", array(
+					':idcategory'=>$this->getidcategory()
+				));
+			}
+	}
+
+	//Adicionar uma postagem a uma categoria
+	public function addPost(Post $post)
+	{
+
+		$sql = new Sql();
+
+		$sql->query("INSERT INTO tb_postscategories (idpost, idcategory) VALUES (:idpost, :idcategory)", array(
+
+			':idpost'=>$post->getidpost(),
+			':idcategory'=>$this->getidcategory(),
+		));
+
+	}
+
+	//Remover 
+	public function removePost(Post $post)
+	{
+
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM tb_postscategories WHERE idpost = :idpost AND idcategory = :idcategory", array(
+
+			':idpost'=>$post->getidpost(),
+			':idcategory'=>$this->getidcategory()
+		));
 
 	}
 

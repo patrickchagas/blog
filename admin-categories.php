@@ -3,6 +3,7 @@
 use \Pcode\PageAdmin;
 use \Pcode\Model\User;
 use \Pcode\Model\Category;
+use \Pcode\Model\Post;
 
 //Rota pra acessar a pagina categorias
 $app->get('/admin/categories', function() {
@@ -68,6 +69,25 @@ $app->post('/admin/categories/create', function () {
 
 });
 
+//Salvar a edição da categoria no banco
+$app->post('/admin/categories/:idcategory', function($idcategory) {
+
+	//Verificar se o usuário está logado
+	User::verifyLogin();
+
+	$category = new Category();
+
+	$category->get((int)$idcategory);
+
+	$category->setData($_POST);
+
+	$category->save();
+
+	header("Location: /admin/categories");
+	exit;
+
+});
+
 //Template de edição de categoria
 $app->get('/admin/categories/:idcategory', function($idcategory) {
 
@@ -87,8 +107,9 @@ $app->get('/admin/categories/:idcategory', function($idcategory) {
 
 });
 
-//Salvar a edição da categoria no banco
-$app->post('/admin/categories/:idcategory', function($idcategory) {
+
+//Tela de Postagens VS Categorias
+$app->get('/admin/categories/:idcategory/posts', function($idcategory) {
 
 	//Verificar se o usuário está logado
 	User::verifyLogin();
@@ -97,14 +118,59 @@ $app->post('/admin/categories/:idcategory', function($idcategory) {
 
 	$category->get((int)$idcategory);
 
-	$category->setData($_POST);
+	$page = new PageAdmin();
 
-	$category->save();
+	$page->setTpl("categories-posts", array(
+		'category'=>$category->getValues(),
+		'postsRelated'=>$category->getPosts(),
+		'postsNotRelated'=>$category->getPosts(false)
+	));
+	
+});
 
-	header("Location: /admin/categories");
+//Adicionar uma postagem em uma categoria
+$app->get('/admin/categories/:idcategory/posts/:idpost/add', function($idcategory, $idpost) {
+
+	//Verificar se o usuário está logado
+	User::verifyLogin();
+
+	$category = new Category();
+
+	$category->get((int)$idcategory);
+
+	$post = new Post();
+
+	$post->get((int)$idpost);
+
+	$category->addPost($post);
+
+	header("Location: /admin/categories/".$idcategory."/posts");
 	exit;
 
 });
+
+//Remover uma postagem de uma categoria
+$app->get('/admin/categories/:idcategory/posts/:idpost/remove', function($idcategory, $idpost) {
+
+	//Verificar se o usuário está logado
+	User::verifyLogin();
+
+	$category = new Category();
+
+	$category->get((int)$idcategory);
+
+	$post = new Post();
+
+	$post->get((int)$idpost);
+
+	$category->removePost($post);
+
+	header("Location: /admin/categories/".$idcategory."/posts");
+	exit;
+
+});
+
+
 
 
 ?>

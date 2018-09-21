@@ -22,17 +22,17 @@
           <div class="box-body">
             <div class="form-group">
               <label for="title">Nome da Postagem</label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Digite o nome do produto" value="{$post.title}">
+              <input type="text" class="form-control" id="title" name="title" placeholder="Digite o Titulo da postagem" value="{$post.title}">
             </div>
               
             <div class="form-group">
               <label for="description">Descrição</label>
-              <input type="text" class="form-control" id="description" name="description" placeholder="Digite o nome do produto" value="{$post.description}">
+              <textarea type="text" class="form-control" id="description" name="description" placeholder="Digite sobre a postagem" rows="8">{$post.description}</textarea>
             </div>
 
             <div class="form-group">
               <label for="desurl">Url</label>
-              <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome do produto" value="{$post.desurl}">
+              <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome da postagem" value="{$post.desurl}">
             </div>
 
             <div class="checkbox">
@@ -45,7 +45,7 @@
               <input type="file" class="form-control" id="file" name="file" value="">
               <div class="box box-widget">
                 <div class="box-body">
-                  <img class="img-responsive" id="image-preview" src="{$post.desphoto}" alt="Photo">
+                  <img class="img-responsive" id="image-preview" src="{$post.desphoto}" alt="Photo" width="550px">
                 </div>
               </div>
             </div>
