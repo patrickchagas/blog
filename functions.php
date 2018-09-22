@@ -3,8 +3,14 @@
 function formatDate($date)
 {
 
-	return date("d/m/Y");
-	 //return date('d/m/Y', strtotime($date));	
+	//return date("d/m/Y");
+	return date('d/m/Y', strtotime($date));	
+
+}
+
+function limitText()
+{
+
 
 }
 

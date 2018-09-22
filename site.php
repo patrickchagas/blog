@@ -12,10 +12,20 @@ $app->get('/', function() {
 	//Listar todas as postagens
 	$posts = Post::listAll();
 
-	//var_dump($posts);
+	$featured = Category::featured();
+
+	$featuredTwo = Category::featuredTwo();
+
+	$featuredThree = Category::featuredThree();
+
+	// var_dump($categories);
+	// exit;
 
 	$page->setTpl("index", array(
-		'posts'=>Post::checkList($posts)
+		'posts'=>Post::checkList($posts),
+		'featured'=>Category::checkList($featured),
+		'featuredTwo'=>Category::checkList($featuredTwo),
+		'featuredThree'=>Category::checkList($featuredThree)
 	));
 
 });
@@ -48,6 +58,13 @@ $app->get('/categories/:idcategory', function($idcategory) {
 		'posts'=>$pagination["data"],
 		'pages'=>$pages
 	));
+
+});
+
+//Noticias de destaque
+$app->get('/categories/:idcategory', function() {
+
+
 
 });
 

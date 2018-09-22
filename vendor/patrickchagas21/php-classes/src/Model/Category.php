@@ -171,6 +171,51 @@ class Category extends Model{
 		));
 
 	}
+
+	public static function checkList($list)
+	{
+		foreach ($list as &$row) {
+			
+			$p = new Post();
+			$p->setData($row);
+			$row = $p->getValues();
+
+		}
+
+		return $list;
+
+	}
+
+	public static function featured()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_postscategories a INNER JOIN tb_posts b USING(idpost) WHERE idcategory = 11");
+
+		// var_dump($sql);
+		// exit;
+
+	}
+
+	public static function featuredTwo()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_postscategories a INNER JOIN tb_posts b USING(idpost) WHERE idcategory = 12");
+
+	}
+
+	public static function featuredThree()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_postscategories a INNER JOIN tb_posts b USING(idpost) WHERE idcategory = 14");
+
+	}
+	
 }
 
 ?>

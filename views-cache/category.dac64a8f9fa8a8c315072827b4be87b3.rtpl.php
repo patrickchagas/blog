@@ -142,6 +142,6 @@
             </div>
         </div>                 
     </div>
-    
+
         <?php require $this->checkTemplate("pagination");?>
 </div>
