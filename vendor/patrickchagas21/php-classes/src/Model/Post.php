@@ -146,6 +146,34 @@ class Post extends Model {
  		$this->checkPhoto();
 
 	}
+
+	//
+	public function getFromURL($desurl)
+	{
+
+		$sql = new Sql();
+
+		$rows = $sql->select("SELECT * FROM tb_posts WHERE desurl = :desurl LIMIT 1", array(
+			'desurl'=>$desurl
+		));
+
+		$this->setData($rows[0]);
+
+	}
+
+	//Pegar as categorias para mostrar na pagina de detalhes da postagem
+	public function getCategories()
+	{
+		$sql = new Sql();
+
+		return $sql->select("
+			SELECT * FROM tb_categories a INNER JOIN tb_postscategories b ON a.idcategory = b.idcategory WHERE b.idpost = :idpost
+
+		", array(
+			'idpost'=>$this->getidpost()
+		));
+
+	}
 		
 }
 

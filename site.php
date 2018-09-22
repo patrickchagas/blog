@@ -61,10 +61,19 @@ $app->get('/categories/:idcategory', function($idcategory) {
 
 });
 
-//Noticias de destaque
-$app->get('/categories/:idcategory', function() {
+//Detalhes da postagem
+$app->get('/posts/:desurl', function($desurl) {
 
+	$post = new Post();
 
+	$post->getFromURL($desurl);
+
+	$page = new Page();
+
+	$page->setTpl("post-detail", array(
+		'post'=>$post->getValues(),
+		'categories'=>$post->getCategories()
+	));
 
 });
 

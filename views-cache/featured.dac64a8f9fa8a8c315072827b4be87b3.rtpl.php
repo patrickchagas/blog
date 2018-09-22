@@ -2,7 +2,7 @@
 
 	<?php $counter1=-1;  if( isset($featured) && ( is_array($featured) || $featured instanceof Traversable ) && sizeof($featured) ) foreach( $featured as $key1 => $value1 ){ $counter1++; ?>	
 
-		<a class="pos-relative h-100 dplay-block" href="<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+		<a class="pos-relative h-100 dplay-block" href="/posts/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 		<div class="bg-1 bg-grad-layer-6">
 		

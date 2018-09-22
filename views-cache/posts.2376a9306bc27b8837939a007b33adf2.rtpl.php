@@ -44,7 +44,7 @@
                     <td><img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" width=150px"></td>
                     <td><?php echo htmlspecialchars( $value1["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo formatDate($value1["dtregister"]); ?></td>
                     <td><?php echo htmlspecialchars( $value1["active"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 
                     <td>
