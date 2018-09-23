@@ -1,5 +1,7 @@
 <?php
 
+use \Pcode\Model\User;
+
 function formatDate($date)
 {
 	//return date("d/m/Y");
@@ -20,7 +22,20 @@ function limitText($text, $limit)
 	} else {
 		return $text;
 	}
+}
 
+function checkLogin($inadmin = true)
+{
+	return User::checkLogin($inadmin);
+}
+
+//Pegar o nome do usuário
+function getUserName()
+{
+
+	$user = User::getFromSession();
+
+	return $user->getperson();
 
 }
 

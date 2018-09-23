@@ -17,6 +17,7 @@
 	
 		
 	<link href="/res/site/common/styles.css" rel="stylesheet">
+	<link href="/res/site/common/my-login.css" rel="stylesheet">
 	
 	
 </head>
@@ -32,15 +33,25 @@
 						<li><a href="#">Advertise</a></li>
 						<li><a href="#">Submit Press Release</a></li>
 						<li><a href="#">Contact</a></li>
-						<li><a href="#">Login</a></li>
+						
 					</ul>
 					<ul class="float-right float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-5">
+
+						<?php if( checkLogin(false) ){ ?>
+							<li><a href="/profile"><?php echo getUserName(); ?></a></li>
+							<li><a href="/logout"> Logout</a></li>
+						<?php }else{ ?>
+							<li><a href="/login">Login</a></li>
+						<?php } ?>
+
+
 						<li><a class="pl-0 pl-sm-10" href="#"><i class="ion-social-facebook"></i></a></li>
 						<li><a href="#"><i class="ion-social-twitter"></i></a></li>
 						<li><a href="#"><i class="ion-social-google"></i></a></li>
 						<li><a href="#"><i class="ion-social-instagram"></i></a></li>
 						<li><a href="#"><i class="ion-social-bitcoin"></i></a></li>
 					</ul>
+
 					
 				</div><!-- top-menu -->
 			</div><!-- container -->

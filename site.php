@@ -3,6 +3,7 @@
 use \Pcode\Page;
 use \Pcode\Model\Category;
 use \Pcode\Model\Post;
+use \Pcode\Model\User;
 
 //Página Inicial
 $app->get('/', function() {
@@ -77,6 +78,58 @@ $app->get('/posts/:desurl', function($desurl) {
 
 });
 
+
+$app->get('/login/success', function() {
+
+	User::verifyLogin(false);
+
+	$page = new Page();
+
+	$page->setTpl("loginSuccess");
+});
+
+
+
+//Tela de Login
+$app->get('/login', function() {
+
+	$page = new Page();
+
+	$page->setTpl('login', array(
+		'error'=>User::getError()
+	));
+
+});
+
+
+//Enviar os dados do formulário
+$app->post('/login', function() {
+
+	try{
+
+		User::login($_POST['login'], $_POST['password']);
+
+	}catch(Exception $e){
+
+		User::setError($e->getMessage());
+
+	}
+
+	header("Location: /login/success");
+	exit;
+
+});
+
+//deslogar do site
+
+$app->get('/logout', function() {
+
+	User::logout();
+
+	header("Location: /login");
+	exit;
+
+});
 
 
 ?>

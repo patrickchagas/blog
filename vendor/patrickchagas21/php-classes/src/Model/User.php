@@ -11,14 +11,62 @@ class User extends Model {
 	const SESSION = "User"; 
 
 	const SECRET = "Pcode_Secret";
+	const ERROR = "UserError";
+	const ERROR_REGISTER = "UserErrorRegister";
 
+	//Pegar a sessão do usuário
+	public static function getFromSession()
+	{
+		$user = new User();
+		if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0) {
+			$user->setData($_SESSION[User::SESSION]);
+		}
+		return $user;
+	}
+
+
+	public static function checkLogin($inadmin = true)
+	{
+		if(	
+			//Se não estiver definida
+			!isset($_SESSION[User::SESSION]) 
+			|| 
+			!$_SESSION[User::SESSION] // esta definida mas está vazia 
+			|| 
+			//Verificar o Id do usuário
+			!(int)$_SESSION[User::SESSION]["iduser"] > 0 // está definido mas o id não é maior que zero			
+		) {
+
+			//Não está logado
+			return false;
+
+		} else {
+
+			//Esse If aqui só vai acontecer se o usuário tentar acessar uma rota de administrador
+			if ($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) {
+
+				return true;
+
+			 //ele está logado e não necessariamente precisa ser um administrador		
+			} else if ($inadmin === false ) {
+
+				return true;
+
+			} else {
+				// se algo saiu desse padrão, ele não está logado
+				return false;
+			}
+		}
+	}
+
+	//Ver se existe o login
 	public static function login($login, $password) 
 	{	
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_users WHERE login = :LOGIN", array(
-			":LOGIN"=>$login
+		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.login = :LOGIN", array(
+		 ":LOGIN"=>$login
 		));
 
 		//Verificar se encotrou algum login
@@ -53,21 +101,17 @@ class User extends Model {
 	public static function verifyLogin($inadmin = true)
 	{	
 
-		if (
-			//SE ELA NÃO FOI DEFINIDA ESSE SESSION
-			!isset($_SESSION[User::SESSION])
-			//ELA PODE SER DEFINADA, MAS PODE ESTAR VAZIA
-			|| 
-			!$_SESSION[User::SESSION]
-			||
-			//verificar o id do usuário
-			!(int)$_SESSION[User::SESSION]["iduser"] > 0
-			||
-			// se ele é um administrador ou não
-			(bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin
-		) {
+		//Se a SESSSION não foi definida
+		if(!User::checkLogin($inadmin)) {
 
-			header("Location: /admin/login");
+			if($inadmin){
+
+				header("Location: /admin/login");
+
+			} else {
+
+				header("Location: /login");				
+			}
 			exit;
 		}
 
@@ -111,6 +155,7 @@ class User extends Model {
 
 	}
 
+	//Pegar o id de um usuário
 	public function get($iduser)
 	{
 
@@ -123,6 +168,7 @@ class User extends Model {
 		$this->setData($results[0]);
 	}
 
+	//Atualizar um usuário
 	public function update()
 	{
 
@@ -141,6 +187,7 @@ class User extends Model {
 
 	}
 
+	//Deletar um usuário
 	public function delete()
 	{
 
@@ -281,6 +328,34 @@ class User extends Model {
 			'cost'=>12
 		]);
 	}
+
+	//Vai receber a mensagem de error
+	public static function setError($msg)
+	{	
+
+		$_SESSION[USER::ERROR] = $msg;	
+
+	}
+
+	//Pegar o erro da sessão
+	public static function getError()
+	{
+
+		$msg = (isset($_SESSION[User::ERROR]) && $_SESSION[User::ERROR]) ? $_SESSION[User::ERROR] : '';
+
+		User::clearError();
+
+		return $msg;
+
+	}
+
+	public static function clearError()
+	{
+
+		$_SESSION[User::ERROR] = NULL;	
+	}
+
+
 
 }
 

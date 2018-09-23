@@ -85,6 +85,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="/res/site/plugin-frameworks/bootstrap.js"></script>
 	
 	<script src="/res/site/common/scripts.js"></script>
+
+	<script src="/res/site/common/my-login.js"></script>
 	
 </body>
 </html>
