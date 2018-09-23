@@ -40,7 +40,7 @@
     <form  action="/admin/forgot/reset" method="post">
       <input type="hidden" name="code" value="<?php echo htmlspecialchars( $code, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
       <div class="input-group">
-        <input type="password" class="form-control" placeholder="Digite a nova senha" name="password">
+        <input type="password" class="form-control" placeholder="Digite a nova senha" name="despassword">
         <div class="input-group-btn">
           <button type="submit" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
         </div>

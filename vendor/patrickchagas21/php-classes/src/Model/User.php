@@ -66,7 +66,7 @@ class User extends Model {
 		$sql = new Sql();
 
 		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.login = :LOGIN", array(
-		 ":LOGIN"=>$login
+		     ":LOGIN"=>$login
 		));
 
 		//Verificar se encotrou algum login
@@ -79,9 +79,11 @@ class User extends Model {
 		$data = $results[0];//primeiro registro que ele encontrou
 
 		//Verificar a senha do usuário
-		if (password_verify($password, $data["password"]) === true)
+		if (password_verify($password, $data["despassword"]) === true)
 		{
 			$user = new User();
+
+			$data['person'] = utf8_encode($data['person']);
 
 			//chamar todos os SETTERS
 			$user->setData($data);
@@ -142,10 +144,10 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_users_save(:person, :login, :password, :email, :phone, :inadmin)", array(
+		$results = $sql->select("CALL sp_users_save(:person, :login, :despassword, :email, :phone, :inadmin)", array(
 			":person"=>utf8_decode($this->getperson()),
 			":login"=>$this->getlogin(),
-			":password"=>User::getPasswordHash($this->getpassword()),
+			":despassword"=>User::getPasswordHash($this->getdespassword()),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin()
@@ -165,6 +167,10 @@ class User extends Model {
 			":iduser"=>$iduser
 		));
 
+		$data = $results[0];
+
+		$data['person'] = utf8_encode($data['person']);
+
 		$this->setData($results[0]);
 	}
 
@@ -173,11 +179,11 @@ class User extends Model {
 	{
 
 		$sql = new Sql();
-		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :person, :login, :password, :email, :phone, :inadmin)", array(
+		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :person, :login, :despassword, :email, :phone, :inadmin)", array(
 			":iduser"=>$this->getiduser(),
-			":person"=>utf8_decode($this->getperson()),
+			":person"=>$this->getperson(),
 			":login"=>$this->getlogin(),
-			":password"=>User::getPasswordHash($this->getpassword()),
+			":despassword"=>User::getPasswordHash($this->getdespassword()),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin()
@@ -315,20 +321,13 @@ class User extends Model {
  	public function setPassword($password)
  	{
  		$sql = new Sql();
- 		$sql->query("UPDATE tb_users SET password = :password WHERE iduser = :iduser", array(
+ 		$sql->query("UPDATE tb_users SET despassword = :password WHERE iduser = :iduser", array(
  			"password"=>$password,
  			"iduser"=>$this->getiduser()
  		));
  	}
 
- 	public static function getPasswordHash($password)
-	{
-
-		return password_hash($password, PASSWORD_DEFAULT, [
-			'cost'=>12
-		]);
-	}
-
+ 	
 	//Vai receber a mensagem de error
 	public static function setError($msg)
 	{	
@@ -348,12 +347,65 @@ class User extends Model {
 		return $msg;
 
 	}
-
+	//Limpar o erro
 	public static function clearError()
 	{
 
 		$_SESSION[User::ERROR] = NULL;	
 	}
+
+
+	//Vai receber a mensagem de error
+	public static function setErrorRegister($msg)
+	{	
+
+		$_SESSION[USER::ERROR_REGISTER] = $msg;	
+
+	}
+
+	//Pegar o erro da sessão
+	public static function getErrorRegister()
+	{
+
+		$msg = (isset($_SESSION[User::ERROR_REGISTER]) && $_SESSION[User::ERROR_REGISTER]) ? $_SESSION[User::ERROR_REGISTER] : '';
+
+		User::clearErrorRegister();
+
+		return $msg;
+
+	}
+
+	//Limpar o erro
+	public static function clearErrorRegister()
+	{
+
+		$_SESSION[User::ERROR_REGISTER] = NULL;	
+	}
+
+	//Verificar se o login já existe no banco
+	public static function checkLoginExist($login)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users WHERE login = :login", array(
+			'login'=>$login
+		));
+
+		return (count($results) > 0); // se retornou alguma coisa, pq o login já existe
+
+
+	} 
+
+
+	public static function getPasswordHash($password)
+	{
+
+		return password_hash($password, PASSWORD_DEFAULT, [
+			'cost'=>12
+		]);
+	}
+
 
 
 

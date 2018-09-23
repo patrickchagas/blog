@@ -32,7 +32,7 @@ $app->get('/admin/login', function() {
 //receber os dados do formulário do login
 $app->post('/admin/login', function() {
 
-	User::login($_POST["login"], $_POST["password"]);
+	User::login($_POST["login"], $_POST["despassword"]);
 
 	header("Location: /admin");
 	exit;
@@ -111,7 +111,7 @@ $app->get('/admin/forgot/reset', function() {
  	$user->get((int)$forgot["iduser"]);
 
  	//Criptografar a senha
-	$password = password_hash($_POST["password"], PASSWORD_DEFAULT, [
+	$password = password_hash($_POST["despassword"], PASSWORD_DEFAULT, [
 		"cost"=>12
 	]);
 

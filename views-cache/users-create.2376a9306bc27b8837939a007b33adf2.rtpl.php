@@ -42,8 +42,8 @@
               <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail">
             </div>
             <div class="form-group">
-              <label for="password">Senha</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Digite a senha">
+              <label for="despassword">Senha</label>
+              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Digite a senha">
             </div>
             <div class="checkbox">
               <label>
