@@ -124,7 +124,7 @@
 
                 <div class="grid">
                     <div class="entry-media">
-                        <img src="{$value.desphoto}" alt="">
+                        <a href="/posts/{$value.desurl}"><img src="{$value.desphoto}" alt=""></a>
                     </div>
                         <div class="entry-body">
                         <span class="cat"><a href="/categories/{$category.idcategory}">{$category.descategory}</span></a>
@@ -132,7 +132,7 @@
                         <p>{$value.description}</p>
 
                         <div class="read-more-date">
-                            <a href="#">Read More..</a>
+                            <a href="/posts/{$value.desurl}">Read More..</a>
                             <span class="date">{function="formatDate($value.dtregister)"}</span>
                         </div>
                     </div>

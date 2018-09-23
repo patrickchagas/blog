@@ -259,7 +259,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
 
-        <li class="active"><a href="/admin"><i class="fa fa-users"></i> <span>Home</span></a></li>
+        <li class="active"><a href="/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
 
         <!-- Optionally, you can add icons to the links -->
         <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
@@ -268,7 +268,7 @@ desired effect
 
         <li><a href="/admin/posts"><i class="fa fa-users"></i> <span>Posts</span></a></li>
 
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li><a href="/" target="_blank"><i class="fa fa-link"></i> <span>Visulizar blog</span></a></li>
 
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>

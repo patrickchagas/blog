@@ -27,7 +27,7 @@
               
             <div class="form-group">
               <label for="description">Descrição</label>
-              <textarea type="text" class="form-control" id="description" name="description" placeholder="Digite sobre a postagem" rows="8"><?php echo htmlspecialchars( $post["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
+              <textarea type="text" class="form-control" id="description" name="description" placeholder="Digite sobre a postagem" rows="12"><?php echo htmlspecialchars( $post["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
             </div>
 
             <div class="form-group">

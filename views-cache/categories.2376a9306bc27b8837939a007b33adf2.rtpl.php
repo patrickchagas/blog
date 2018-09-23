@@ -28,7 +28,7 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>Nome da Categoria</th>
-                    <th style="width: 240px">&nbsp;</th>
+                    <th style="width: 380px">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -38,6 +38,9 @@
                     <td><?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
+
+                      <a href="/categories/<?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Visualizar Categoria no Site</a>
+
                       <a href="/admin/categories/<?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/posts" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Postagens</a>
 
                       <a href="/admin/categories/<?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>

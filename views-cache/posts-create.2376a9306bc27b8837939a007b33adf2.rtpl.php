@@ -32,7 +32,7 @@
 
             <div class="form-group">
               <label for="description">Descrição</label>
-              <input type="text" class="form-control" id="description" name="description" placeholder="Digite a descrição do post">
+              <textarea type="text" class="form-control" id="description" name="description" placeholder="Digite a descrição do post" rows="8"></textarea>
             </div>
 
             <div class="form-group">

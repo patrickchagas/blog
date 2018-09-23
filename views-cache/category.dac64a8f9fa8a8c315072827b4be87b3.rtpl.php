@@ -124,7 +124,7 @@
 
                 <div class="grid">
                     <div class="entry-media">
-                        <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                        <a href="/posts/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt=""></a>
                     </div>
                         <div class="entry-body">
                         <span class="cat"><a href="/categories/<?php echo htmlspecialchars( $category["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $category["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></a>
@@ -132,7 +132,7 @@
                         <p><?php echo htmlspecialchars( $value1["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
 
                         <div class="read-more-date">
-                            <a href="#">Read More..</a>
+                            <a href="/posts/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Read More..</a>
                             <span class="date"><?php echo formatDate($value1["dtregister"]); ?></span>
                         </div>
                     </div>

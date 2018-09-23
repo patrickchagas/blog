@@ -33,7 +33,7 @@
                     <th>Descrição</th>
                     <th>Data</th>
                     <th>Exibição</th>
-                    <th style="width: 140px">&nbsp;</th>
+                    <th style="width: 265px">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -42,12 +42,16 @@
                     <td>{$value.idpost}</td>
                     <td><img src="{$value.desphoto}" width=150px"></td>
                     <td>{$value.title}</td>
-                    <td>{$value.description}</td>
+                    <td>{function="limitText($value.description, $limit=150)"}</td>
                     <td>{function="formatDate($value.dtregister)"}</td>
                     <td>{$value.active}</td>
 
                     <td>
+
+                      <a href="/posts/{$value.desurl}" target="_blank" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Visualizar postagem</a>
+
                       <a href="/admin/posts/{$value.idpost}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+
                       <a href="/admin/posts/{$value.idpost}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>

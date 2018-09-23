@@ -33,7 +33,7 @@
                     <th>Descrição</th>
                     <th>Data</th>
                     <th>Exibição</th>
-                    <th style="width: 140px">&nbsp;</th>
+                    <th style="width: 265px">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -43,12 +43,16 @@
                     <td><?php echo htmlspecialchars( $value1["idpost"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" width=150px"></td>
                     <td><?php echo htmlspecialchars( $value1["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo limitText($value1["description"], $limit=150); ?></td>
                     <td><?php echo formatDate($value1["dtregister"]); ?></td>
                     <td><?php echo htmlspecialchars( $value1["active"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 
                     <td>
+
+                      <a href="/posts/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Visualizar postagem</a>
+
                       <a href="/admin/posts/<?php echo htmlspecialchars( $value1["idpost"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+
                       <a href="/admin/posts/<?php echo htmlspecialchars( $value1["idpost"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
