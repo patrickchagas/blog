@@ -3,7 +3,7 @@
 <style type="text/css">
     .login-big-title-area {
         background: url("/res/site/images/crossword.png") repeat scroll 0 0 #e67e22;
-        width: 100%;
+        width: 100;
     }
     .login-bit-title h2 {
       font-family: raleway;
@@ -22,7 +22,7 @@
 
             <div class="row justify-content-md-center h-100">
 
-                <div class="login-big-title-area ">
+                <div class="login-big-title-area">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">

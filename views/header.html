@@ -17,7 +17,7 @@
 	
 		
 	<link href="/res/site/common/styles.css" rel="stylesheet">
-	<link href="/res/site/common/my-login.css" rel="stylesheet">
+	<link href="/res/site/common/my-css.css" rel="stylesheet">
 	
 	
 </head>

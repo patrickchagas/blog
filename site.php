@@ -207,10 +207,6 @@ $app->post('/register', function() {
 		'phone'=>$_POST['phone']
 	]);
 
-
-	// var_dump($user);
-	// exit;
-
 	$user->save();
 
 	User::login($_POST['email'], $_POST['despassword']);
@@ -230,6 +226,75 @@ $app->get('/logout', function() {
 	exit;
 
 });
+
+//tela do esqueceu a senha
+$app->get('/forgot', function() {
+
+	$page = new Page();
+
+	$page->setTpl('forgot');
+
+});
+
+//Enviar o email digitado
+$app->post('/forgot', function() {
+
+	$user = User::getForgot($_POST["email"], false);
+
+	header("Location: /forgot/sent");
+	exit;
+
+});
+
+//Template de e-mail enviado
+$app->get('/forgot/sent', function() {
+
+	$page = new Page();
+
+	$page->setTpl('forgot-sent');
+
+});
+
+//Mostar o nome e o codigo do usuário no template
+$app->get('/forgot/reset', function() {
+
+ 	$user = User::validForgotDecrypt($_GET["code"]);
+
+ 	$page = new Page();
+
+	$page->setTpl("forgot-reset", array(
+		"name"=>$user["person"],
+		"code"=>$_GET["code"]
+	));
+ });
+
+ //Rota pra enviar a nova senha do usuário
+$app->post('/forgot/reset', function(){
+
+ 	$forgot = User::validForgotDecrypt($_POST["code"]);
+ 	
+ 	//Metodo que vai falar pro banco de dados, que esse processo de recuperação já foi usado, pra ele não recuperar de novo mesmo que esteja ainda dentro dessa 1 hora
+	User::setForgotUsed($forgot["idrecovery"]);
+
+ 	$user =  new User();
+
+ 	$user->get((int)$forgot["iduser"]);
+
+ 	//Criptografar a senha
+	$password = password_hash($_POST["password"], PASSWORD_DEFAULT, [
+		"cost"=>12
+	]);
+
+ 	$user->setPassword($password);
+
+ 	$page = new Page();
+
+ 	//Mostrar que a senha foi alterada com sucesso
+	$page->setTpl("forgot-reset-success");
+
+});
+
+
 
 
 ?>

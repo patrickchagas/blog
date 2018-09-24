@@ -1,3 +1,5 @@
+/* PAGINA DE LOGIN E CADASTRO DO SITE*/
+
 html,body {
 	height: 100%;
 }
@@ -63,3 +65,17 @@ body.my-login-page {
 	color: #888;
 	text-align: center;
 }
+
+
+.title-forgot{
+	font-family: raleway;
+	font-size: 30px;        
+}
+
+.subtitle-forgot{
+	font-size: 15px;
+}
+
+
+/* PERFIL DO USUÁRIO - SITE */
+
