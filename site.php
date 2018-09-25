@@ -294,6 +294,97 @@ $app->post('/forgot/reset', function(){
 
 });
 
+//Template do perfil do usuário
+$app->get('/profile', function() {
+
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	$page = new Page();
+
+	$page->setTpl('profile', array(
+		'user'=>$user->getValues(),
+		'profileMsg'=>User::getSuccess(),
+		'profileError'=>User::getError()
+	));
+
+});
+
+//Salvar a edição de um usuário feita no PERFIL
+$app->post('/profile', function() {
+
+	User::verifyLogin(false);
+
+	//Para o usuário não mandar campo vazio ou indefinido
+	if(!isset($_POST['person']) || $_POST['person'] === ''){
+
+		User::setError("Preencha o seu nome.");
+
+		header("Location: /profile");
+		exit;
+
+	}	
+
+	if(!isset($_POST['email']) || $_POST['email'] === ''){
+
+		User::setError("Preencha o seu e-mail.");
+
+		header("Location: /profile");
+		exit;
+	}
+
+	$user = User::getFromSession();
+
+	//Se tiver outro usuário usando o mesmo login
+	if($_POST['email'] !== $user->getemail()){ // se for diferente do atual email/login, isso quer dizer que o usuário mudou o email
+
+		if(User::checkLoginExist($_POST['email']) === true){// se e-mail digitado já existe
+
+			User::setError("Esse endereço de e-mail já está cadastrado");
+			header("Location: /profile");
+			exit;
+		}
+	}
+
+	$_POST['inadmin'] = $user->getinadmin();
+	$_POST['despassword'] = $user->getdespassword();
+	$_POST['login'] = $_POST['email'];
+
+	$user->setData($_POST);
+
+	$user->save();
+
+	User::setSuccess("Dados alterados com sucesso!");
+
+	header("Location: /profile");
+	exit;
+});
+
+
+//Alterar senha do usuário
+$app->get('/profile/change-password', function() {
+
+	User::verifyLogin(false);
+
+	$page = new Page();
+
+	$page->setTpl('profile-change-password');
+
+});
+
+//Avisos da parte administrativa para o usuários
+$app->get('/profile/notice', function() {
+
+	User::verifyLogin(false);
+
+	$page = new Page();
+
+	$page->setTpl('profile-notice');
+
+});
+
+
 
 
 

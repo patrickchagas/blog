@@ -34,11 +34,13 @@
 						<li><a href="#">Submit Press Release</a></li>
 						<li><a href="#">Contact</a></li>
 						
+						
 					</ul>
 					<ul class="float-right float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-5">
 
 						{if="checkLogin(false)"}
 							<li><a href="/profile">{function="getUserName()"}</a></li>
+							<li><a href="/profile">Minha Conta</a></li>
 							<li><a href="/logout"> Logout</a></li>
 						{else}
 							<li><a href="/login">Login</a></li>

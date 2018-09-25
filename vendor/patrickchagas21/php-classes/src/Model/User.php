@@ -13,6 +13,7 @@ class User extends Model {
 	const SECRET = "Pcode_Secret";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
+	const SUCCESS = 'UserSuccess';
 
 	//Pegar a sessão do usuário
 	public static function getFromSession()
@@ -193,6 +194,7 @@ class User extends Model {
 
 	}
 
+	
 	//Deletar um usuário
 	public function delete()
 	{
@@ -395,7 +397,36 @@ class User extends Model {
 		return (count($results) > 0); // se retornou alguma coisa, pq o login já existe
 
 
-	} 
+	}
+
+	//Vai receber a mensagem de error
+	public static function setSuccess($msg)
+	{	
+
+		$_SESSION[USER::SUCCESS] = $msg;	
+
+	}
+
+	//Pegar o erro da sessão
+	public static function getSuccess()
+	{
+
+		$msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : '';
+
+		User::clearSuccess();
+
+		return $msg;
+
+	}
+	//Limpar o erro
+	public static function clearSuccess()
+	{
+
+		$_SESSION[User::SUCCESS] = NULL;	
+	}
+
+
+
 
 
 	public static function getPasswordHash($password)
