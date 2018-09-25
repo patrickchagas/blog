@@ -24,6 +24,15 @@ function limitText($text, $limit)
 	}
 }
 
+//Retorna o texto editado com o tinymce
+//Se não usar essa função, o texto no post-detail - site, fica mostrando apenas as tags HTML, ex: <p>texto aqui</p>
+function textStyle($text)
+{
+
+	return $text;
+
+}
+
 function checkLogin($inadmin = true)
 {
 	return User::checkLogin($inadmin);

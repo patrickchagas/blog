@@ -76,7 +76,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	<!-- SCIPTS -->
 
-	
+	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+	<script>tinymce.init({ selector:'textarea' });</script>
 
 	<script src="/res/site/plugin-frameworks/jquery-3.2.1.min.js"></script>
 	
