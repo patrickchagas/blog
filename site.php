@@ -347,13 +347,17 @@ $app->post('/profile', function() {
 		}
 	}
 
+	$_POST['iduser'] = $user->getiduser();
 	$_POST['inadmin'] = $user->getinadmin();
 	$_POST['despassword'] = $user->getdespassword();
 	$_POST['login'] = $_POST['email'];
 
 	$user->setData($_POST);
 
-	$user->save();
+	$user->update();
+
+	//
+	$_SESSION[User::SESSION] = $user->getValues();
 
 	User::setSuccess("Dados alterados com sucesso!");
 

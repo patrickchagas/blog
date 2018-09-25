@@ -184,7 +184,7 @@ class User extends Model {
 			":iduser"=>$this->getiduser(),
 			":person"=>$this->getperson(),
 			":login"=>$this->getlogin(),
-			":despassword"=>User::getPasswordHash($this->getdespassword()),
+			":despassword"=>$this->getdespassword(),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin()
@@ -194,7 +194,7 @@ class User extends Model {
 
 	}
 
-	
+
 	//Deletar um usuário
 	public function delete()
 	{
