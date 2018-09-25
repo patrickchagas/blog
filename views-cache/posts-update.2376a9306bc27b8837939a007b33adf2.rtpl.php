@@ -35,6 +35,11 @@
               <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome da postagem" value="<?php echo htmlspecialchars( $post["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
 
+            <div class="form-group">
+              <label for="publishedby">Publicado por</label>
+              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Digite o nome da postagem" value="<?php echo htmlspecialchars( $post["publishedby"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+            </div>
+
             <div class="checkbox">
               <label>
                 <input type="checkbox" name="active" value="sim" <?php if( $post["active"] == 1 ){ ?>checked<?php } ?>> Exibir postagem

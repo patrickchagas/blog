@@ -35,6 +35,11 @@
               <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome da postagem" value="{$post.desurl}">
             </div>
 
+            <div class="form-group">
+              <label for="publishedby">Publicado por</label>
+              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Digite o nome da postagem" value="{$post.publishedby}">
+            </div>
+
             <div class="checkbox">
               <label>
                 <input type="checkbox" name="active" value="sim" {if="$post.active == 1"}checked{/if}> Exibir postagem

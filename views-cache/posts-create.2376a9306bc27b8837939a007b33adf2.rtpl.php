@@ -40,6 +40,11 @@
               <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite a descrição do post">
             </div>
 
+            <div class="form-group">
+              <label for="publishedby">Publicado Por</label>
+              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Post publicado por" value="<?php echo getUserName(); ?>">
+            </div>
+
             <div class="checkbox">
               <label>
                 <input type="checkbox" name="active" value="sim"> Exibir Postagem

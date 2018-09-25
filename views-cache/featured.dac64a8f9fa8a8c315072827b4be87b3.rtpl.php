@@ -15,7 +15,7 @@
 			
 			<h3 class="mb-15 mb-sm-5 font-sm-13"><b><?php echo htmlspecialchars( $value1["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></h3>
 			<ul class="list-li-mr-20">
-				<li>by <span class="color-primary"><b>Olivia Capzallo</b></span>   <?php echo formatDate($value1["dtregister"]); ?></li>
+				<li>by <span class="color-primary"><b><?php echo htmlspecialchars( $value1["publishedby"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></span>   <?php echo formatDate($value1["dtregister"]); ?></li>
 				<li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>30,190</li>
 				<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>30</li>
 			</ul>

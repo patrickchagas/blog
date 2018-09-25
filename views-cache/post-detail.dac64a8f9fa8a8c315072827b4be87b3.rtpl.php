@@ -21,7 +21,7 @@
 					<img src="<?php echo htmlspecialchars( $post["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
 					<h3 class="mt-30"><b><?php echo htmlspecialchars( $post["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></h3>
 					<ul class="list-li-mr-20 mtb-15">
-						<li>by <a href="#"><b>Olivia Capzallo </b></a> <?php echo formatDate($post["dtregister"]); ?></li>
+						<li>by <a href="#"><b><?php echo htmlspecialchars( $post["publishedby"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </b></a> <?php echo formatDate($post["dtregister"]); ?></li>
 						<li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>30,190</li>
 						<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>30</li>
 					</ul>

@@ -17,7 +17,7 @@
         <div class="row">
             <?php require $this->checkTemplate("profile-menu");?>
             <div class="col-md-8">
-                         <form action="/profile/change-password" method="post">
+                <form action="/profile/change-password" method="post">
                     <div class="form-group">
                     <label for="current_pass">Senha Atual</label>
                     <input type="password" class="form-control" id="current_pass" name="current_pass">

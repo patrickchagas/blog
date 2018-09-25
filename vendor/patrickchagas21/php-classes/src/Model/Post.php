@@ -37,13 +37,14 @@ class Post extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_posts_save(:idpost, :title, :description, :active, :desurl)" , array(
+		$results = $sql->select("CALL sp_posts_save(:idpost, :title, :description, :active, :desurl, :publishedby)" , array(
 
 			":idpost"=>$this->getidpost(),
 			":title"=>$this->gettitle(),
 			":description"=>$this->getdescription(),
 			":active"=>$this->getactive(),
-			":desurl"=>$this->getdesurl()
+			":desurl"=>$this->getdesurl(),
+			":publishedby"=>$this->getpublishedby()
 
 		));
 
