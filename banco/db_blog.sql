@@ -42,6 +42,34 @@ INSERT INTO `tb_categories` VALUES (3,'Jogos','','2018-09-19 14:48:42'),(4,'Tecn
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tb_notices`
+--
+
+DROP TABLE IF EXISTS `tb_notices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_notices` (
+  `idnotice` int(11) NOT NULL AUTO_INCREMENT,
+  `notice` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `active` varchar(45) NOT NULL,
+  `publishedby` varchar(255) NOT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idnotice`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_notices`
+--
+
+LOCK TABLES `tb_notices` WRITE;
+/*!40000 ALTER TABLE `tb_notices` DISABLE KEYS */;
+INSERT INTO `tb_notices` VALUES (1,'Manutencao','<p><strong>O site passar&aacute; por algumas atualiza&ccedil;&otilde;es.</strong></p>','sim','Administrador','2018-09-26 01:06:42'),(2,'Nova manutenÃ§Ã£o ','<p><strong>O site sofrer&aacute; algumas atualiza&ccedil;&otilde;es para melhora de desempenho, ent&atilde;o algumas funcionalidades estar&atilde;o desativadas, obrigado pela compreens&atilde;o!</strong></p>','sim','Administrador','2018-09-26 13:05:37');
+/*!40000 ALTER TABLE `tb_notices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_persons`
 --
 
@@ -64,7 +92,7 @@ CREATE TABLE `tb_persons` (
 
 LOCK TABLES `tb_persons` WRITE;
 /*!40000 ALTER TABLE `tb_persons` DISABLE KEYS */;
-INSERT INTO `tb_persons` VALUES (2,'Administrador','aulascursophp7@gmail.com',2133334444,'2017-03-01 06:00:00'),(28,'Teste Da Silva','',21333,'2018-09-23 21:19:10'),(29,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:06'),(30,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:13'),(31,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:16'),(32,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:49:11'),(54,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 02:52:05');
+INSERT INTO `tb_persons` VALUES (2,'Administrador','aulascursophp7@gmail.com',2133334444,'2017-03-01 06:00:00'),(29,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:06'),(30,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:13'),(31,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:16'),(32,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:49:11'),(54,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 02:52:05');
 /*!40000 ALTER TABLE `tb_persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,9 +107,9 @@ CREATE TABLE `tb_posts` (
   `idpost` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL,
   `description` text NOT NULL,
-  `active` varchar(10) NOT NULL,
+  `active` varchar(20) NOT NULL,
   `desurl` varchar(150) NOT NULL,
-  `publishedby` varchar(150) DEFAULT NULL,
+  `publishedby` varchar(150) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpost`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
@@ -150,7 +178,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (2,2,'admin','$2y$12$dg38xk3z/Yjxt8MPPeVOfutVrwsHrpDaPT/1..TRDXt2XU.8QUgo2',1,'2017-03-13 06:00:00'),(28,28,'teste','$2y$12$DTZkyPQnhcsJwt9YhZuVOufyS4tGuLgu66Lv7NG3XiEjTKc9sVjmi',0,'2018-09-23 21:19:10'),(50,54,'patrickchagas21@gmail.com','$2y$12$dS1UTNEfyWcjO.tllhlEsOUTbRRMAHDoyy2KVXw48XG4XnAPOrLEa',0,'2018-09-25 02:52:05');
+INSERT INTO `tb_users` VALUES (2,2,'admin','$2y$12$dg38xk3z/Yjxt8MPPeVOfutVrwsHrpDaPT/1..TRDXt2XU.8QUgo2',1,'2017-03-13 06:00:00'),(50,54,'patrickchagas21@gmail.com','$2y$12$dS1UTNEfyWcjO.tllhlEsOUTbRRMAHDoyy2KVXw48XG4XnAPOrLEa',0,'2018-09-25 02:52:05');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,6 +330,52 @@ BEGIN
     END IF;
     
     SELECT * FROM tb_categories WHERE idcategory = pidcategory;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_notices_save` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_notices_save`(
+pidnotice int(11),
+pnotice varchar(150),
+pdescription text,
+pactive varchar(10),
+ppublishedby varchar(150)
+)
+BEGIN
+	
+	IF pidnotice > 0 THEN
+		
+		UPDATE tb_notices
+        SET 
+			notice = pnotice,
+            description = pdescription,
+            active = pactive,
+            publishedby = ppublishedby
+        WHERE idnotice = pidnotice;
+        
+    ELSE
+		
+		INSERT INTO tb_notices (notice, description, active, publishedby) 
+        VALUES(pnotice, pdescription, pactive, ppublishedby);
+        
+        SET pidnotice = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_notices WHERE idnotice = pidnotice;
     
 END ;;
 DELIMITER ;
@@ -518,4 +592,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-25 10:01:43
+-- Dump completed on 2018-09-26 11:02:40

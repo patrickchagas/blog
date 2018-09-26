@@ -4,6 +4,7 @@ use \Pcode\Page;
 use \Pcode\Model\Category;
 use \Pcode\Model\Post;
 use \Pcode\Model\User;
+use \Pcode\Model\Notice;
 
 //Página Inicial
 $app->get('/', function() {
@@ -382,9 +383,15 @@ $app->get('/profile/notice', function() {
 
 	User::verifyLogin(false);
 
+	$notices = new Notice();
+
+	$notices = Notice::listAll();
+
 	$page = new Page();
 
-	$page->setTpl('profile-notice');
+	$page->setTpl('profile-notice', array(
+		'notices'=>$notices
+	));
 
 });
 
