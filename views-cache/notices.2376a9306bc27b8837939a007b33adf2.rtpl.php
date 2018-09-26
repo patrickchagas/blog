@@ -29,7 +29,7 @@
                     <th style="width: 10px">#ID</th>
                     <th>Nome do Aviso</th>
                     <th>Descrição do Aviso</th>
-                    <th>Exibir Aviso</th>
+                    <th>Exibir</th>
                     <th style="width: 140px">&nbsp;</th>
                   </tr>
                 </thead>

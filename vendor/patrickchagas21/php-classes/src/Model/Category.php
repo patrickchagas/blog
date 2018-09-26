@@ -17,16 +17,27 @@ class Category extends Model{
 
 	}
 
+	//Listar as categorias que estão ativadas
+	public static function listActiveCategory()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_categories WHERE active = 'sim' ");
+
+	}
+
 	//Salvar no banco a categoria que foi cadastrada
 	public function save()
 	{
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_categories_save(:idcategory, :descategory)", array(
+		$results = $sql->select("CALL sp_categories_save(:idcategory, :descategory, :active)", array(
 
 			":idcategory"=>$this->getidcategory(),
-			":descategory"=>$this->getdescategory()
+			":descategory"=>$this->getdescategory(),
+			":active"=>$this->getactive()
 
 		));
 
@@ -68,7 +79,7 @@ class Category extends Model{
 	public static function updateFile()
 	{
 
-		$categories = Category::listAll();
+		$categories = Category::listActiveCategory();
 
 		$html = [];
 
@@ -77,7 +88,6 @@ class Category extends Model{
 		}
 
 		file_put_contents($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "categories-menu.html", implode('', $html));
-
 	}
 
 	//Trazer todos as postagens // posts vs categorias
@@ -158,7 +168,7 @@ class Category extends Model{
 
 	}
 
-	//Remover 
+	//Remover uma postagem da categoria
 	public function removePost(Post $post)
 	{
 
@@ -192,9 +202,6 @@ class Category extends Model{
 		$sql = new Sql();
 
 		return $sql->select("SELECT * FROM tb_postscategories a INNER JOIN tb_posts b USING(idpost) WHERE idcategory = 11");
-
-		// var_dump($sql);
-		// exit;
 
 	}
 

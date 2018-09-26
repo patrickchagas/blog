@@ -32,7 +32,7 @@
                     <th>Titulo</th>
                     <th>Descrição</th>
                     <th>Data</th>
-                    <th>Exibição</th>
+                    <th>Exibir</th>
                     <th style="width: 265px">&nbsp;</th>
                   </tr>
                 </thead>

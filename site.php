@@ -20,9 +20,6 @@ $app->get('/', function() {
 
 	$featuredThree = Category::featuredThree();
 
-	// var_dump($categories);
-	// exit;
-
 	$page->setTpl("index", array(
 		'posts'=>Post::checkList($posts),
 		'featured'=>Category::checkList($featured),

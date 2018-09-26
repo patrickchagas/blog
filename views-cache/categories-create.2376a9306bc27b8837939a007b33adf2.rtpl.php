@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -36,7 +36,7 @@
                 <label for="select">Exibir Postagem</label>
                   <select class="span6 disabled" id="active" name="active">
                        <option value="sim">Sim</option> 
-                       <option value="nao">Nao</option>
+                       <option value="sim">Nao</option>
                   </select>  
               </div>
           </div>

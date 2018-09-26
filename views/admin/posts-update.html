@@ -43,9 +43,8 @@
             <div class="form-group">
               <label for="select">Exibir Postagem</label>
                 <select class="span6 disabled" id="active" name="active">
-                    <option checked></option> 
                      <option value="sim">Sim</option> 
-                     <option value="sim">Nao</option>
+                     <option value="nao">Nao</option>
                 </select>  
             </div>
 
