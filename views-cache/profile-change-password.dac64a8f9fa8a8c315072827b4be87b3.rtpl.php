@@ -17,6 +17,24 @@
         <div class="row">
             <?php require $this->checkTemplate("profile-menu");?>
             <div class="col-md-8">
+
+                <div class="cart-collaterals">
+                    <h2>Alterar Senha</h2>
+                </div>
+
+                <?php if( $changePassError != '' ){ ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars( $changePassError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+
+                <?php if( $changePassSuccess != '' ){ ?>
+                <div class="alert alert-success">
+                    <?php echo htmlspecialchars( $changePassSuccess, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+
+
                 <form action="/profile/change-password" method="post">
                     <div class="form-group">
                     <label for="current_pass">Senha Atual</label>

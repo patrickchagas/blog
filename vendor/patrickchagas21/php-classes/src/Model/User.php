@@ -184,7 +184,7 @@ class User extends Model {
 			":iduser"=>$this->getiduser(),
 			":person"=>$this->getperson(),
 			":login"=>$this->getlogin(),
-			":despassword"=>$this->getdespassword(),
+			":despassword"=>User::getPasswordHash($this->getdespassword()),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin()
