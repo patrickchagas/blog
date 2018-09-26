@@ -3,12 +3,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Lista de Postagens
+    Lista de Avisos
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="/admin/categories">Categorias</a></li>
-    <li class="active"><a href="/admin/categories/create">Cadastrar</a></li>
+    <li><a href="/admin/notices">Avisos</a></li>
+    <li class="active"><a href="/admin/notices/create">Cadastrar</a></li>
   </ol>
 </section>
 
@@ -19,39 +19,35 @@
   	<div class="col-md-12">
   		<div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">Nova Postagem</h3>
+          <h3 class="box-title">Novo Aviso</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/admin/posts/create" method="post">
+        <form role="form" action="/admin/notices/create" method="post">
           <div class="box-body">
             <div class="form-group">
-              <label for="title">Titulo da postagem</label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Digite o titulo do post">
+              <label for="notice">Titulo do Aviso</label>
+              <input type="text" class="form-control" id="notice" name="notice" placeholder="Digite o titulo do aviso">
             </div>
 
             <div class="form-group">
               <label for="description">Descrição</label>
-              <textarea type="text" class="form-control" id="description" name="description" placeholder="Digite a descrição do post" rows="8"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="desurl">Url</label>
-              <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite a descrição do post">
+              <textarea type="text" class="form-control" id="description" name="description" placeholder="Digite a descrição do aviso" rows="8"></textarea>
             </div>
 
             <div class="form-group">
               <label for="publishedby">Publicado Por</label>
-              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Post publicado por" value="<?php echo getUserName(); ?>">
+              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Aviso publicado por" value="<?php echo getUserName(); ?>">
             </div>
 
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="active" value="sim"> Exibir Postagem
-              </label>
+            <div class="form-group">
+              <label for="select">Exibir Aviso</label>
+                <select class="span6 disabled" id="active" name="active">
+                     <option value="sim">Sim</option> 
+                     <option value="nao">Nao</option>
+                </select>  
             </div>
 
-           
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
