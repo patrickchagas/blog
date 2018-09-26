@@ -1,3 +1,22 @@
+<style type="text/css">
+	.notification{
+		background: #e67e22;
+		border-radius: 50px;
+		color: #000;
+		display: inline-block;
+		font-size: 15px;
+		height: 20px;
+		padding: 2px;
+		position: absolute;
+		right: -10px;
+		text-align: center;
+		width: 30px;
+	}
+	
+
+</style>
+
+
 <div class="col-md-4">
     <div class="profile-work">
         <p>EM BREVE NOVAS OPÇÕES</p>
@@ -5,7 +24,16 @@
         <p>Dados Pessoais</p>
         <a href="/profile" class="list-group-item list-group-item-action">Editar Dados</a><br/>
         <a href="/profile/change-password" class="list-group-item list-group-item-action">Alterar Senha</a><br/>
-        <a href="/profile/notice" class="list-group-item list-group-item-action">Avisos</a><br/>
+        <a href="/profile/notice" class="list-group-item list-group-item-action">
+        	Avisos
+        	{loop="$notices"}
+	        	{if="$value.active == 'sim' "} 
+	        		<span class="notification">{function="getNoticesNrQtd()"}</span>
+	        	{else}
+	        		<span></span>	
+	        	{/if}
+        	{/loop}
+    	</a><br/>
         <a href="/logout" class="list-group-item list-group-item-action">Sair</a><br/>
     </div>
 </div>

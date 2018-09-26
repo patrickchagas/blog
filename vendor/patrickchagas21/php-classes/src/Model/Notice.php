@@ -63,6 +63,24 @@ class Notice extends Model { //Avisos
 
 	}
 
+	//Pega a quantidade de AVISOS(notificações) e mostra pro usuário
+	public static function getNoticesTotals()
+	{	
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT SUM(notice) as notice, COUNT(*) AS nrqtd FROM tb_notices WHERE active = 'sim' ");
+
+		if(count($results) > 0){
+
+			return $results[0];
+
+		} else {
+
+			return [];
+		}
+
+	}
+
 
 }
 

@@ -302,12 +302,18 @@ $app->get('/profile', function() {
 
 	$user = User::getFromSession();
 
+	$notices = new Notice();
+
+	$notices = Notice::listAll();
+
 	$page = new Page();
 
 	$page->setTpl('profile', array(
 		'user'=>$user->getValues(),
 		'profileMsg'=>User::getSuccess(),
-		'profileError'=>User::getError()
+		'profileError'=>User::getError(),
+		//mostrar as notificações dos avisos
+		'notices'=>$notices,
 	));
 
 });
@@ -372,9 +378,16 @@ $app->get('/profile/change-password', function() {
 
 	User::verifyLogin(false);
 
+	$notices = new Notice();
+
+	$notices = Notice::listAll();
+
 	$page = new Page();
 
-	$page->setTpl('profile-change-password');
+	$page->setTpl('profile-change-password', array(
+		//mostrar as notificações dos avisos
+		'notices'=>$notices
+	));
 
 });
 
@@ -390,7 +403,7 @@ $app->get('/profile/notice', function() {
 	$page = new Page();
 
 	$page->setTpl('profile-notice', array(
-		'notices'=>$notices
+		'notices'=>$notices,
 	));
 
 });

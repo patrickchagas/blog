@@ -44,7 +44,9 @@
         </div>
     </form>    
         <div class="row">
-            <?php require $this->checkTemplate("profile-menu");?>
+
+                <?php require $this->checkTemplate("profile-menu");?>
+
             <div class="col-md-8">
                     <?php if( $profileMsg != ''  ){ ?>
                     <div class="alert alert-success" role="alert">

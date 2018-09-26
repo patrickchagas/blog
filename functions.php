@@ -1,6 +1,7 @@
 <?php
 
 use \Pcode\Model\User;
+use \Pcode\Model\Notice;
 
 function formatDate($date)
 {
@@ -9,6 +10,7 @@ function formatDate($date)
 
 }
 
+//Limitar caracteres que a descrição do post vai exibir
 function limitText($text, $limit)
 {
 
@@ -47,5 +49,18 @@ function getUserName()
 	return $user->getperson();
 
 }
+
+//Pega a quantidade de AVISOS(notificações) e mostra pro usuário
+function getNoticesNrQtd()
+{
+
+	$notice = new Notice();
+
+	$totals = $notice->getNoticesTotals();
+
+	return $totals['nrqtd'];
+
+}
+
 
 ?>
