@@ -279,7 +279,7 @@ $app->post('/forgot/reset', function(){
  	$user->get((int)$forgot["iduser"]);
 
  	//Criptografar a senha
-	$password = password_hash($_POST["password"], PASSWORD_DEFAULT, [
+	$password = password_hash($_POST["despassword"], PASSWORD_DEFAULT, [
 		"cost"=>12
 	]);
 

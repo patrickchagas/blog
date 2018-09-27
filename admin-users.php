@@ -14,7 +14,7 @@ $app->get('/admin/users', function() {
 	$page = new PageAdmin();
 
 	$page->setTpl("users", array(
-		"users"=>$users
+		"users"=>User::checkList($users)
 	));
 });
 
@@ -94,14 +94,20 @@ $app->post('/admin/users/:iduser', function($iduser) {
 
 	$user = new User();
 
-	$_POST['inadmin'] = (isset($_POST['inadmin']))?1:0;
-
 	//carregar os dados 
 	$user->get((int)$iduser);
 
 	$user->setData($_POST);
 
 	$user->update();
+
+	//Salvar uma nova imagem apenas se ela existir
+	if ((int)$_FILES["file"]["size"] > 0) {
+        $user->setPhoto($_FILES["file"]);
+    }
+
+	//Coloquei esse if para não dar erro, caso eu não mude a imagem do usuário
+	// if($_FILES["file"]["name"] !== "") $user->setPhoto($_FILES["file"]);
 
 	header("Location: /admin/users");
 	exit;

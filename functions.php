@@ -50,6 +50,14 @@ function getUserName()
 
 }
 
+function getAdminPhoto()
+{
+
+	$user = User::getFromSession();
+
+	return $user->getdesphoto();
+}
+
 //Pega a quantidade de AVISOS(notificações) e mostra pro usuário
 function getNoticesNrQtd()
 {

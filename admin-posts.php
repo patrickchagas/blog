@@ -65,7 +65,7 @@ $app->post('/admin/posts/create', function() {
 	exit;
 });
 
-//Tela de edição de postagem
+//Alterar uma postagem
 $app->get('/admin/posts/:idpost', function ($idpost) {
 
 	//Verificar se o usuário está logado
@@ -96,6 +96,11 @@ $app->post('/admin/posts/:idpost', function($idpost) {
 	$post->setData($_POST);
 
 	$post->save();
+
+	//Salvar uma nova imagem apenas se ela existir
+	// if ((int)$_FILES["file"]["size"] > 0) {
+ //        $post->setPhoto($_FILES["file"]);
+ //    }
 
 	//Coloquei esse if para não dar erro, caso eu não mude a imagem da postagem
 	if($_FILES["file"]["name"] !== "") $post->setPhoto($_FILES["file"]);

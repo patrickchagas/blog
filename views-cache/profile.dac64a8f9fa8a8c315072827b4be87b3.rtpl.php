@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="/res/site/images/padrao.jpeg" alt=""/>
+                    <img src="<?php echo getAdminPhoto(); ?>" alt="" style="width: 175px;" />
                     <div class="file btn btn-lg btn-primary">
                         Change Photo
                         <input type="file" name="file"/>

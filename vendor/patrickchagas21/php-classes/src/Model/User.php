@@ -11,6 +11,7 @@ class User extends Model {
 	const SESSION = "User"; 
 
 	const SECRET = "Pcode_Secret";
+
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
 	const SUCCESS = 'UserSuccess';
@@ -139,16 +140,31 @@ class User extends Model {
 
 	}
 
+	public static function checkList($list)
+	{
+		foreach ($list as &$row) {
+			
+			$u = new User();
+			$u->setData($row);
+			$row = $u->getValues();
+
+		}
+
+		return $list;
+
+	}
+
 	//Salvar no banco os dados que o usuário cadastrou
 	public function save()
 	{
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_users_save(:person, :login, :despassword, :email, :phone, :inadmin)", array(
+		$results = $sql->select("CALL sp_users_save(:person, :login, :despassword, :desurl,  :email, :phone, :inadmin)", array(
 			":person"=>utf8_decode($this->getperson()),
 			":login"=>$this->getlogin(),
 			":despassword"=>User::getPasswordHash($this->getdespassword()),
+			":desurl"=>$this->getdesurl(),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin()
@@ -180,11 +196,12 @@ class User extends Model {
 	{
 
 		$sql = new Sql();
-		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :person, :login, :despassword, :email, :phone, :inadmin)", array(
+		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :person, :login, :despassword, :desurl, :email, :phone, :inadmin)", array(
 			":iduser"=>$this->getiduser(),
 			":person"=>$this->getperson(),
 			":login"=>$this->getlogin(),
-			":despassword"=>User::getPasswordHash($this->getdespassword()),
+			":despassword"=>$this->getdespassword(),
+			":desurl"=>$this->getdesurl(),
 			":email"=>$this->getemail(),
 			":phone"=>$this->getphone(),
 			":inadmin"=>$this->getinadmin()
@@ -207,6 +224,78 @@ class User extends Model {
 
 	}
 
+	public function checkPhoto()
+	{
+
+		//o nome do arquivo da imagem vai ser o ID do post
+		if(file_exists($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+		   "res". DIRECTORY_SEPARATOR .
+		   "admin" . DIRECTORY_SEPARATOR .
+		   "dist" . DIRECTORY_SEPARATOR .
+		   "img" . DIRECTORY_SEPARATOR .
+		   $this->getiduser() . ".jpg"
+		)) {
+
+			$url = "/res/admin/dist/img/" . $this->getiduser() . ".jpg";
+
+		} else {
+
+			$url = "/res/admin/dist/img/padrao.jpeg";
+
+		}
+
+		return $this->setdesphoto($url);
+
+	}
+
+	public function getValues()
+	{
+
+		//Verificar se o usuário administrativo tem uma imagem ou não
+		$this->checkPhoto();
+
+		$values = parent::getValues();
+
+		return $values;
+	}
+
+	public function setPhoto($file)
+	{
+
+		$extension = explode('.', $file['name']);
+		$extension = end($extension);
+
+		switch ($extension) {
+
+			case "jpg":
+			case "jpeg":
+			$image = imagecreatefromjpeg($file["tmp_name"]);	
+ 			break;
+			
+			case 'gif':
+			$image = imagecreatefromgif($file["tmp_name"]);	
+			break;
+
+ 			case "png":
+			$image = imagecreatefrompng($file["tmp_name"]);	
+			break;
+		}
+
+		$dist = $_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR . 
+			"res" . DIRECTORY_SEPARATOR . 
+			"admin" . DIRECTORY_SEPARATOR .
+			"dist" . DIRECTORY_SEPARATOR . 
+			"img" . DIRECTORY_SEPARATOR . 
+			$this->getiduser().".jpg";
+
+ 		imagejpeg($image, $dist);
+
+ 		imagedestroy($image);
+
+ 		$this->checkPhoto();
+
+	}
+	
 	public static function getForgot($email, $inadmin = true)
 	{
 
@@ -323,11 +412,13 @@ class User extends Model {
  	public function setPassword($password)
  	{
  		$sql = new Sql();
- 		$sql->query("UPDATE tb_users SET despassword = :password WHERE iduser = :iduser", array(
- 			"password"=>$password,
+ 		$sql->query("UPDATE tb_users SET despassword = :despassword WHERE iduser = :iduser", array(
+ 			"despassword"=>$password,
  			"iduser"=>$this->getiduser()
  		));
  	}
+
+
 
  	
 	//Vai receber a mensagem de error
