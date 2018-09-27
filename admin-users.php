@@ -3,6 +3,64 @@
 use \Pcode\PageAdmin;
 use \Pcode\Model\User;
 
+//Alterar senha do Admin
+$app->get('/admin/users/:iduser/password', function($iduser) {
+
+	User::verifyLogin();
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users-password", array(
+		"user"=>$user->getValues(),
+		"msgError"=>User::getError(),
+		'msgSuccess'=>User::getSuccess()
+	));
+});
+
+//Salvar a alteração da senha
+$app->post('/admin/users/:iduser/password', function($iduser) {
+
+	User::verifyLogin();
+
+	if(!isset($_POST['despassword']) || $_POST['despassword'] === '') {
+
+		User::setError("Preencha a nova senha.");
+		header("Location: /admin/users/$iduser/password");
+		exit;
+	}
+
+	if(!isset($_POST['despassword-confirm']) || $_POST['despassword-confirm'] === '') {
+
+		User::setError("Preencha a confirmação nova senha.");
+		header("Location: /admin/users/$iduser/password");
+		exit;
+	}
+
+	if($_POST['despassword'] !== $_POST['despassword-confirm']) {
+
+		User::setError("Confirme corretamente as senhas.");
+		header("Location: /admin/users/$iduser/password");
+		exit;
+
+	}
+
+	$user = new User();
+
+	$user->get((int)$iduser);
+
+	$user->setPassword(User::getPasswordHash($_POST['despassword']));
+
+		User::setSuccess("Senha alterada com sucesso.");
+		header("Location: /admin/users/$iduser/password");
+		exit;
+
+
+});
+
 //Página de listar todos os usuários
 $app->get('/admin/users', function() {
 
@@ -113,5 +171,7 @@ $app->post('/admin/users/:iduser', function($iduser) {
 	exit;
 
 });
+
+
 
 ?>

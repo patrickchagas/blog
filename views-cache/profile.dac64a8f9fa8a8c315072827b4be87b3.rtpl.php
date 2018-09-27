@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="<?php echo getAdminPhoto(); ?>" alt="" style="width: 175px;" />
+                    <img src="/res/site/images/padrao.jpeg" alt="" style="width: 175px;" />
                     <div class="file btn btn-lg btn-primary">
                         Change Photo
                         <input type="file" name="file"/>
@@ -28,6 +28,7 @@
                 <div class="profile-head">
                             <h5>
                                 <?php echo getUserName(); ?>
+
                             </h5>
                             <h6>
                                 Web Developer
@@ -47,18 +48,25 @@
 
                 <?php require $this->checkTemplate("profile-menu");?>
 
+
             <div class="col-md-8">
                     <?php if( $profileMsg != ''  ){ ?>
+
                     <div class="alert alert-success" role="alert">
                         <?php echo htmlspecialchars( $profileMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
                     </div>
                     <?php } ?>
 
+
                      <?php if( $profileError != ''  ){ ?>
+
                     <div class="alert alert-danger" role="alert">
                         <?php echo htmlspecialchars( $profileError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
                     </div>
                     <?php } ?>
+
 
 
                     <div>
