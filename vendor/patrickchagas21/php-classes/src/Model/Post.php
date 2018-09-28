@@ -13,7 +13,7 @@ class Post extends Model {
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT * FROM tb_posts ORDER BY idpost");
+		return $sql->select("SELECT * FROM tb_posts ORDER BY idpost DESC");
 
 	}
 

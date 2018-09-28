@@ -13,7 +13,10 @@ $app->config('debug', true);
 
 //Arquivos do Front End
 require_once("site.php");
-
+require_once("site-profile.php");
+require_once("site-users.php");
+require_once("site-posts.php");
+require_once("site-categories.php");
 
 //Funções
 require_once("functions.php");

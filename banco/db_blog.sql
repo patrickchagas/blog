@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `tb_categories`;
 CREATE TABLE `tb_categories` (
   `idcategory` int(11) NOT NULL AUTO_INCREMENT,
   `descategory` varchar(60) NOT NULL,
-  `active` varchar(45) NOT NULL,
+  `active` varchar(3) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcategory`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
@@ -37,8 +37,38 @@ CREATE TABLE `tb_categories` (
 
 LOCK TABLES `tb_categories` WRITE;
 /*!40000 ALTER TABLE `tb_categories` DISABLE KEYS */;
-INSERT INTO `tb_categories` VALUES (3,'Jogos','','2018-09-19 14:48:42'),(4,'Tecnologia','','2018-09-19 22:10:27'),(5,'Google','','2018-09-20 13:55:29'),(7,'Cursos','','2018-09-20 14:18:04'),(8,'Downloads','','2018-09-20 14:18:07'),(9,'SÃ©ries','','2018-09-20 14:18:12'),(10,'Tutoriais','','2018-09-20 14:24:04'),(11,'Destaque Principal','','2018-09-21 23:45:07'),(12,'Destaque 2','','2018-09-22 03:02:14'),(14,'Destaque 3','','2018-09-22 03:25:31'),(15,'Memes','','2018-09-22 03:44:01');
+INSERT INTO `tb_categories` VALUES (3,'Jogos','sim','2018-09-19 14:48:42'),(4,'Tecnologia','sim','2018-09-19 22:10:27'),(5,'Google','sim','2018-09-20 13:55:29'),(7,'Cursos','sim','2018-09-20 14:18:04'),(8,'Downloads','sim','2018-09-20 14:18:07'),(9,'SÃ©ries','sim','2018-09-20 14:18:12'),(10,'Tutoriais','sim','2018-09-20 14:24:04'),(11,'Destaque Principal','nao','2018-09-21 23:45:07'),(12,'Destaque 2','nao','2018-09-22 03:02:14'),(14,'Destaque 3','nao','2018-09-22 03:25:31'),(15,'Memes','sim','2018-09-22 03:44:01');
 /*!40000 ALTER TABLE `tb_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_comments`
+--
+
+DROP TABLE IF EXISTS `tb_comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_comments` (
+  `idcomment` int(11) NOT NULL AUTO_INCREMENT,
+  `nameuser` varchar(255) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `message` text NOT NULL,
+  `identification` varchar(100) NOT NULL,
+  `active` varchar(3) DEFAULT 'sim',
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idcomment`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_comments`
+--
+
+LOCK TABLES `tb_comments` WRITE;
+/*!40000 ALTER TABLE `tb_comments` DISABLE KEYS */;
+INSERT INTO `tb_comments` VALUES (1,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Mr Robot</p>','mr-robot','sim','2018-09-28 10:24:32'),(2,'Administrador','aulascursophp7@gmail.com','2122223333','<p>The Flash</p>','serie-the-flash','sim','2018-09-28 10:24:50'),(3,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Mr Robot 2</p>','mr-robot','sim','2018-09-28 15:33:31'),(4,'Patrick','aulascursophp7@gmail.com','2122223333','<p>&Oacute;tima s&eacute;rie!!!</p>','serie-the-flash','sim','2018-09-28 15:34:24'),(6,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Uma das melhores s&eacute;ries que j&aacute; assisti, pena que cancelaram!</p>','scorpion-serie','sim','2018-09-28 15:50:35');
+/*!40000 ALTER TABLE `tb_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -56,7 +86,7 @@ CREATE TABLE `tb_notices` (
   `publishedby` varchar(255) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idnotice`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +95,7 @@ CREATE TABLE `tb_notices` (
 
 LOCK TABLES `tb_notices` WRITE;
 /*!40000 ALTER TABLE `tb_notices` DISABLE KEYS */;
-INSERT INTO `tb_notices` VALUES (1,'Manutencao','<p><strong>O site passar&aacute; por algumas atualiza&ccedil;&otilde;es.</strong></p>','sim','Administrador','2018-09-26 01:06:42'),(2,'Nova manutenÃ§Ã£o ','<p><strong>O site sofrer&aacute; algumas atualiza&ccedil;&otilde;es para melhora de desempenho, ent&atilde;o algumas funcionalidades estar&atilde;o desativadas, obrigado pela compreens&atilde;o!</strong></p>','sim','Administrador','2018-09-26 13:05:37');
+INSERT INTO `tb_notices` VALUES (1,'Manutencao','<p><strong>O site passar&aacute; por algumas atualiza&ccedil;&otilde;es.</strong></p>','nao','Administrador','2018-09-26 01:06:42'),(2,'Nova manutenÃ§Ã£o ','<p><strong>O site sofrer&aacute; algumas atualiza&ccedil;&otilde;es para melhora de desempenho, ent&atilde;o algumas funcionalidades estar&atilde;o desativadas, obrigado pela compreens&atilde;o!</strong></p>','sim','Administrador','2018-09-26 13:05:37');
 /*!40000 ALTER TABLE `tb_notices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +113,7 @@ CREATE TABLE `tb_persons` (
   `phone` bigint(26) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idperson`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +122,7 @@ CREATE TABLE `tb_persons` (
 
 LOCK TABLES `tb_persons` WRITE;
 /*!40000 ALTER TABLE `tb_persons` DISABLE KEYS */;
-INSERT INTO `tb_persons` VALUES (2,'Administrador','aulascursophp7@gmail.com',2133334444,'2017-03-01 06:00:00'),(29,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:06'),(30,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:13'),(31,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:16'),(32,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:49:11'),(54,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 02:52:05');
+INSERT INTO `tb_persons` VALUES (29,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:06'),(30,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:13'),(31,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:48:16'),(32,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 01:49:11'),(54,'Patrick Chagas','patrickchagas21@gmail.com',21984848840,'2018-09-25 02:52:05'),(56,'Suporte','suporte@blog.com.br',0,'2018-09-27 13:46:55'),(57,'Administrador','aulascursophp7@gmail.com',2122223333,'2018-09-27 21:57:36');
 /*!40000 ALTER TABLE `tb_persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +142,7 @@ CREATE TABLE `tb_posts` (
   `publishedby` varchar(150) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpost`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +151,7 @@ CREATE TABLE `tb_posts` (
 
 LOCK TABLES `tb_posts` WRITE;
 /*!40000 ALTER TABLE `tb_posts` DISABLE KEYS */;
-INSERT INTO `tb_posts` VALUES (1,'Scorpion','<p><strong>Um g&ecirc;nio exc&ecirc;ntrico forma uma rede internacional de superg&ecirc;nios para atuar como a &uacute;ltima linha de defesa contra as amea&ccedil;as complexas do mundo moderno.</strong></p>\r\n<h2>&nbsp;</h2>\r\n<h2>Enredo</h2>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Inspirado em uma hist&oacute;ria real, conta a hist&oacute;ria do exc&ecirc;ntrico g&ecirc;nio,<a style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Walter O\'Brien\" href=\"https://pt.wikipedia.org/wiki/Walter_O%27Brien\">Walter O\'Brien</a>, e de sua equipe composta por um comportamentalista(<a class=\"mw-redirect\" style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Behaviorista\" href=\"https://pt.wikipedia.org/wiki/Behaviorista\">Behaviorismo</a>), Toby, uma calculadora humana, Sylvester, e uma prod&iacute;gio da mec&acirc;nica, Happy. Todos s&atilde;o pessoas &oacute;timas de esp&iacute;rito, mas que n&atilde;o conseguem se socializar com a maioria das pessoas e por isso recebem a ajuda de uma ex atendente de lanchonete chamada Paige que tem um filho g&ecirc;nio, Ralph.</p>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Quando um problema s&eacute;rio surge no espa&ccedil;o a&eacute;reo americano o agente Cabe Gallo resolve recrutar a equipe de g&ecirc;nios, j&aacute; que n&atilde;o existe nenhuma outra equipe capaz de resolver o problema. A partir da&iacute;, e agora com o apoio do governo, eles se tornam oficialmente a equipe Scorpion e transformam-se na &uacute;ltima linha de defesa contra amea&ccedil;as complexas ao redor do mundo.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>','sim','scorpion-serie','Patrick Chagas','2018-09-20 22:32:04'),(7,'Nokia marca evento de lanÃ§amento para 04/10; saiba o que mais vem por aÃ­...','<p>Outubro de 2018 est&aacute; se tornando um dos meses mais movimentados para o mercado de tecnologia, especialmente no que diz respeito a smartphones. Al&eacute;m de eventos da Motorola, LG, Huawei, Google, OnePlus e Samsung, a Nokia tamb&eacute;m resolveu entrar na festa e</p>','sim','nokia-7plus','Administrador','2018-09-20 23:02:50'),(20,'The Flash','<p>Depois de ser atingido por um raio, Barry Allen acorda de seu coma para descobrir que recebeu o poder da super velocidade, se tornando o Flash, lutando contra o crime em Central City.</p>','sim','serie-the-flash','Administrador','2018-09-21 03:09:30'),(21,'Lorem Ipsum','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros hendrerit luctus a eu ex. Praesent vulputate sagittis sapien, non cursus nulla consectetur eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros h</p>','sim','lorem-ipsum','Administrador','2018-09-21 13:24:44'),(24,'The Big Bang Theory','<p>Uma mulher que se muda para um apartamento do outro lado do corredor de dois f&iacute;sicos brilhantes, mas socialmente desajeitados, mostra-lhes o qu&atilde;o pouco sabem sobre a vida fora do laborat&oacute;rio.</p>','sim','the-big-bang-theory','Administrador','2018-09-21 13:28:16'),(25,'Testando','<p>Testando</p>','sim','testando','Administrador','2018-09-21 13:31:24'),(29,'Mr Robot','<p>Elliot, um brilhante mas altamente inst&aacute;vel jovem engenheiro de seguran&ccedil;a cibern&eacute;tica e hacker vigilante, torna-se uma figura chave em um jogo complexo de dom&iacute;nio global quando ele e seus aliados sombrios tentam derrubar a corpora&ccedil;&atilde;o corrupta para a</p>','sim','mr-robot','Patrick Chagas','2018-09-21 15:01:56'),(30,'Code','<p>Web Developer</p>','sim','code-web-developer','Administrador','2018-09-22 03:37:45'),(31,'Ai vocÃª passa...','<p>Ai voc&ecirc; passa...</p>','sim','alanzoka','Administrador','2018-09-22 03:44:44'),(32,'FIFA 19 terÃ¡ seleÃ§Ã£o brasileira com nomes genÃ©ricos','<p>Somente Neymar possui um avatar fidedigno no game Com lan&ccedil;amento marcado para dia 25 de setembro, FIFA 19 pode decepcionar aqueles que queriam usar a sele&ccedil;&atilde;o de Philippe Coutinho, Marcelo e Casemiro: a escala&ccedil;&atilde;o do time brasileiro no game &eacute; gen&eacute;ri</p>','sim','fifa-19-tera-selecao-brasileira-com-nomes-genericos','Administrador','2018-09-22 17:12:36'),(33,'Web Developer','<p><strong><span style=\"color: #222222; font-family: sans-serif;\">Este &eacute; o profissional que trabalha desenvolvendo websites, podendo ser um Web Designer (Desenvolvedor do Layout), ou Web Developer(Desenvolvedor de sistemas).&nbsp;</span></strong></p>','sim','web-developer','Administrador','2018-09-25 03:42:51'),(35,'Nova Postagem!','<p>Ol&aacute; Mundo!</p>','sim','nova-postagem','Administrador','2018-09-25 12:19:24');
+INSERT INTO `tb_posts` VALUES (1,'Scorpion','<p><strong>Um g&ecirc;nio exc&ecirc;ntrico forma uma rede internacional de superg&ecirc;nios para atuar como a &uacute;ltima linha de defesa contra as amea&ccedil;as complexas do mundo moderno.</strong></p>\r\n<h2>&nbsp;</h2>\r\n<h2>Enredo</h2>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Inspirado em uma hist&oacute;ria real, conta a hist&oacute;ria do exc&ecirc;ntrico g&ecirc;nio,<a style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Walter O\'Brien\" href=\"https://pt.wikipedia.org/wiki/Walter_O%27Brien\">Walter O\'Brien</a>, e de sua equipe composta por um comportamentalista(<a class=\"mw-redirect\" style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Behaviorista\" href=\"https://pt.wikipedia.org/wiki/Behaviorista\">Behaviorismo</a>), Toby, uma calculadora humana, Sylvester, e uma prod&iacute;gio da mec&acirc;nica, Happy. Todos s&atilde;o pessoas &oacute;timas de esp&iacute;rito, mas que n&atilde;o conseguem se socializar com a maioria das pessoas e por isso recebem a ajuda de uma ex atendente de lanchonete chamada Paige que tem um filho g&ecirc;nio, Ralph.</p>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Quando um problema s&eacute;rio surge no espa&ccedil;o a&eacute;reo americano o agente Cabe Gallo resolve recrutar a equipe de g&ecirc;nios, j&aacute; que n&atilde;o existe nenhuma outra equipe capaz de resolver o problema. A partir da&iacute;, e agora com o apoio do governo, eles se tornam oficialmente a equipe Scorpion e transformam-se na &uacute;ltima linha de defesa contra amea&ccedil;as complexas ao redor do mundo.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>','sim','scorpion-serie','Patrick Chagas','2018-09-20 22:32:04'),(7,'Nokia marca evento de lanÃ§amento para 04/10; saiba o que mais vem por aÃ­...','<p>Outubro de 2018 est&aacute; se tornando um dos meses mais movimentados para o mercado de tecnologia, especialmente no que diz respeito a smartphones. Al&eacute;m de eventos da Motorola, LG, Huawei, Google, OnePlus e Samsung, a Nokia tamb&eacute;m resolveu entrar na festa e</p>','sim','nokia-7plus','Administrador','2018-09-20 23:02:50'),(20,'The Flash','<p>Depois de ser atingido por um raio, Barry Allen acorda de seu coma para descobrir que recebeu o poder da super velocidade, se tornando o Flash, lutando contra o crime em Central City.</p>','sim','serie-the-flash','Administrador','2018-09-21 03:09:30'),(21,'Lorem Ipsum','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros hendrerit luctus a eu ex. Praesent vulputate sagittis sapien, non cursus nulla consectetur eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros h</p>','sim','lorem-ipsum','Administrador','2018-09-21 13:24:44'),(24,'The Big Bang Theory','<p>Uma mulher que se muda para um apartamento do outro lado do corredor de dois f&iacute;sicos brilhantes, mas socialmente desajeitados, mostra-lhes o qu&atilde;o pouco sabem sobre a vida fora do laborat&oacute;rio.</p>','sim','the-big-bang-theory','Administrador','2018-09-21 13:28:16'),(25,'Testando','<p>Testando</p>','sim','testando','Administrador','2018-09-21 13:31:24'),(29,'Mr Robot','<p>Elliot, um brilhante mas altamente inst&aacute;vel jovem engenheiro de seguran&ccedil;a cibern&eacute;tica e hacker vigilante, torna-se uma figura chave em um jogo complexo de dom&iacute;nio global quando ele e seus aliados sombrios tentam derrubar a corpora&ccedil;&atilde;o corrupta para a</p>','sim','mr-robot','Patrick Chagas','2018-09-21 15:01:56'),(30,'Code','<p>Web Developer</p>','sim','code-web-developer','Administrador','2018-09-22 03:37:45'),(31,'Ai vocÃª passa...','<p>Ai voc&ecirc; passa...</p>','sim','alanzoka','Administrador','2018-09-22 03:44:44'),(32,'FIFA 19 terÃ¡ seleÃ§Ã£o brasileira com nomes genÃ©ricos','<p>Somente Neymar possui um avatar fidedigno no game Com lan&ccedil;amento marcado para dia 25 de setembro, FIFA 19 pode decepcionar aqueles que queriam usar a sele&ccedil;&atilde;o de Philippe Coutinho, Marcelo e Casemiro: a escala&ccedil;&atilde;o do time brasileiro no game &eacute; gen&eacute;ri</p>','sim','fifa-19-tera-selecao-brasileira-com-nomes-genericos','Administrador','2018-09-22 17:12:36'),(33,'Web Developer','<p><strong><span style=\"color: #222222; font-family: sans-serif;\">Este &eacute; o profissional que trabalha desenvolvendo websites, podendo ser um Web Designer (Desenvolvedor do Layout), ou Web Developer(Desenvolvedor de sistemas).&nbsp;</span></strong></p>','sim','web-developer','Administrador','2018-09-25 03:42:51'),(37,'OlÃ¡ Mundo!','<p><strong>Ol&aacute; Mundo!</strong></p>','sim','ola-mundo','Administrador','2018-09-27 15:22:28');
 /*!40000 ALTER TABLE `tb_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +178,7 @@ CREATE TABLE `tb_postscategories` (
 
 LOCK TABLES `tb_postscategories` WRITE;
 /*!40000 ALTER TABLE `tb_postscategories` DISABLE KEYS */;
-INSERT INTO `tb_postscategories` VALUES (1,9),(1,14),(7,4),(7,14),(20,9),(20,12),(21,14),(24,9),(24,12),(29,9),(29,11),(30,4),(31,15),(32,3),(33,4);
+INSERT INTO `tb_postscategories` VALUES (1,9),(1,14),(7,4),(7,14),(20,9),(20,12),(21,14),(24,9),(24,12),(29,9),(29,11),(30,4),(31,15),(32,3),(33,4),(37,4);
 /*!40000 ALTER TABLE `tb_postscategories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,12 +194,12 @@ CREATE TABLE `tb_users` (
   `idperson` int(11) NOT NULL,
   `login` varchar(100) NOT NULL,
   `despassword` varchar(256) NOT NULL,
+  `desurl` varchar(250) DEFAULT NULL,
   `inadmin` tinyint(4) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iduser`),
-  KEY `fk_tb_users_tb_persons_idx` (`idperson`),
-  CONSTRAINT `fk_tb_users_tb_persons` FOREIGN KEY (`idperson`) REFERENCES `tb_persons` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+  KEY `fk_users_persons_idx` (`idperson`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +208,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (2,2,'admin','$2y$12$dg38xk3z/Yjxt8MPPeVOfutVrwsHrpDaPT/1..TRDXt2XU.8QUgo2',1,'2017-03-13 06:00:00'),(50,54,'patrickchagas21@gmail.com','$2y$12$dS1UTNEfyWcjO.tllhlEsOUTbRRMAHDoyy2KVXw48XG4XnAPOrLEa',0,'2018-09-25 02:52:05');
+INSERT INTO `tb_users` VALUES (50,54,'patrickchagas21@gmail.com','$2y$12$dS1UTNEfyWcjO.tllhlEsOUTbRRMAHDoyy2KVXw48XG4XnAPOrLEa',NULL,0,'2018-09-25 02:52:05'),(52,56,'suporte','$2y$12$WLvbVqYBRE4Y5P.WVou/feCbkdlqyK81dsEk8iHBEa3yLfThHKFbO','suporte-perfil',1,'2018-09-27 13:46:55'),(53,57,'admin','$2y$12$LGyAK9Qch6wxHjQ7dvunS.aqIbWVrQKwIe64SpnwI6yoZhBv3BU1y','admin-patrick',1,'2018-09-27 21:57:36');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +256,7 @@ CREATE TABLE `tb_userspasswordsrecoveries` (
   PRIMARY KEY (`idrecovery`),
   KEY `fk_tb_userspasswordsrecoveries_tb_users1_idx` (`iduser`),
   CONSTRAINT `fk_tb_userspasswordsrecoveries_tb_users1` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +265,6 @@ CREATE TABLE `tb_userspasswordsrecoveries` (
 
 LOCK TABLES `tb_userspasswordsrecoveries` WRITE;
 /*!40000 ALTER TABLE `tb_userspasswordsrecoveries` DISABLE KEYS */;
-INSERT INTO `tb_userspasswordsrecoveries` VALUES (1,2,'127.0.0.1','0000-00-00 00:00:00','2017-03-15 19:10:59'),(2,2,'127.0.0.1','2017-03-15 13:33:45','2017-03-15 19:11:18'),(3,2,'127.0.0.1','2017-03-15 13:37:35','2017-03-15 19:37:12'),(4,2,'127.0.0.1',NULL,'2018-09-19 13:19:55'),(5,2,'127.0.0.1',NULL,'2018-09-19 13:20:03'),(6,2,'127.0.0.1',NULL,'2018-09-19 13:33:00'),(7,2,'127.0.0.1','2018-09-19 10:41:33','2018-09-19 13:38:56'),(8,2,'127.0.0.1',NULL,'2018-09-19 13:41:54'),(9,2,'127.0.0.1',NULL,'2018-09-19 13:42:55'),(10,2,'127.0.0.1','2018-09-19 10:44:57','2018-09-19 13:44:16'),(11,2,'127.0.0.1','2018-09-19 10:52:43','2018-09-19 13:52:28'),(12,2,'127.0.0.1','2018-09-19 11:04:04','2018-09-19 14:03:54'),(13,2,'127.0.0.1',NULL,'2018-09-23 13:36:14'),(14,2,'127.0.0.1','2018-09-23 10:40:17','2018-09-23 13:40:02'),(15,2,'127.0.0.1','2018-09-23 10:44:41','2018-09-23 13:44:31'),(16,2,'127.0.0.1',NULL,'2018-09-23 21:17:30'),(17,2,'127.0.0.1',NULL,'2018-09-23 21:18:08'),(18,2,'127.0.0.1','2018-09-23 18:18:43','2018-09-23 21:18:30');
 /*!40000 ALTER TABLE `tb_userspasswordsrecoveries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,6 +359,56 @@ BEGIN
     END IF;
     
     SELECT * FROM tb_categories WHERE idcategory = pidcategory;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_comments_save` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_comments_save`(
+pidcomment int(11),
+pnameuser varchar(150),
+pemail varchar(150),
+pphone varchar(20),
+pmessage text,
+pidentification varchar(250),
+pactive varchar(10)
+)
+BEGIN
+	
+	IF pidcomment > 0 THEN
+		
+		UPDATE tb_comments
+        SET 
+			nameuser = pnameuser,
+            email = pemail,
+            phone = pphone,
+            message = pmessage,
+            identification = pidentification,
+            active = pactive
+        WHERE idcomment = pidcomment;
+        
+    ELSE
+		
+		INSERT INTO tb_comments (nameuser, email, phone, message, identification, active) 
+        VALUES(pnameuser, pemail, pphone, pmessage, pidentification, pactive);
+        
+        SET pidcomment = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_comments WHERE idcomment = pidcomment;
     
 END ;;
 DELIMITER ;
@@ -473,7 +552,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usersupdate_save`(
 piduser INT,
 pperson VARCHAR(64), 
 plogin VARCHAR(64), 
-ppassword VARCHAR(256), 
+pdespassword VARCHAR(256),
+pdesurl VARCHAR(255), 
 pemail VARCHAR(128), 
 pphone BIGINT, 
 pinadmin TINYINT
@@ -496,7 +576,8 @@ BEGIN
     UPDATE tb_users
     SET
 		login = plogin,
-        despassword = ppassword,
+        despassword = pdespassword,
+        desurl = pdesurl,
         inadmin = pinadmin
 	WHERE iduser = piduser;
     
@@ -557,7 +638,8 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_save`(
 pperson VARCHAR(64), 
 plogin VARCHAR(64), 
-ppassword VARCHAR(256), 
+pdespassword VARCHAR(256),
+pdesurl varchar(255), 
 pemail VARCHAR(128), 
 pphone BIGINT, 
 pinadmin TINYINT
@@ -571,8 +653,8 @@ BEGIN
     
     SET vidperson = LAST_INSERT_ID();
     
-    INSERT INTO tb_users (idperson, login, despassword, inadmin)
-    VALUES(vidperson, plogin, ppassword, pinadmin);
+    INSERT INTO tb_users (idperson, login, despassword, desurl, inadmin)
+    VALUES(vidperson, plogin, pdespassword, pdesurl, pinadmin);
     
     SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = LAST_INSERT_ID();
     
@@ -592,4 +674,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-26 11:02:40
+-- Dump completed on 2018-09-28 12:51:30

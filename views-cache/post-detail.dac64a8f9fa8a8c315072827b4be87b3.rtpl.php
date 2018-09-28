@@ -1,4 +1,5 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>
+
 		
 		
 	
@@ -39,8 +40,10 @@
 						<ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
 
 							<?php $counter1=-1;  if( isset($categories) && ( is_array($categories) || $categories instanceof Traversable ) && sizeof($categories) ) foreach( $categories as $key1 => $value1 ){ $counter1++; ?>
+
 								<li><a href="/categories/<?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
 							<?php } ?>
+
 						</ul>
 						<ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
 							<li class="mr-10 ml-0">Share</li>
@@ -81,19 +84,75 @@
 						
 					</div><!-- row -->
 						
-					<?php require $this->checkTemplate("commentPost");?>	
-					
+					<h4 class="p-title mt-20"><b>03 COMMENTS</b></h4>
+					<?php $counter1=-1;  if( isset($comment) && ( is_array($comment) || $comment instanceof Traversable ) && sizeof($comment) ) foreach( $comment as $key1 => $value1 ){ $counter1++; ?>
+
+						<!-- O IDENTIFICADOR TEM QUE SER IGUAL AO DESURL DO POST, PRA MOSTRAR OS COMENTÁRIOS NA POSTAGEM -->
+						<?php if( $value1["identification"] == $post["desurl"]  ){ ?>	
+						<div class="sided-70 mb-40">
+						
+							<div class="s-left rounded">
+								<img src="/res/site/images/profile-4.jpg" alt="">
+							</div><!-- s-left -->
+
+						<div class="s-right ml-100 ml-xs-85">
+
+							<h5><b><?php echo htmlspecialchars( $value1["nameuser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, </b> <span class="font-8 color-ash"><?php echo formatDate($value1["dtregister"]); ?></span></h5>
+							<p class="mtb-15"><?php echo textStyle($value1["message"]); ?></p>
+							<a class="btn-brdr-grey btn-b-sm plr-15 mr-10 mt-5" id="addCount" href="#"><b>LIKE</b></a>
+
+							<a class="btn-brdr-grey btn-b-sm plr-15 mr-10 mt-5" href="#"><b>1</b></a>
+
+
+							<a class="btn-brdr-grey btn-b-sm plr-15 mt-5" href="#"><b>REPLY</b></a>
+						</div><!-- s-right -->
+
+						</div><!-- sided-70 -->
+						<?php } ?>
+
+					<?php } ?>	
+
+					<h4 class="p-title mt-20"><b>LEAVE A COMMENT</b></h4>
+
+				
+					<form class="form-block form-plr-15 form-h-45 form-mb-20 form-brdr-lite-white mb-md-50" action="/posts/<?php echo htmlspecialchars( $post["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+
+						<input type="hidden" name="identification" value="<?php echo htmlspecialchars( $post["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+						<input type="hidden" name="active" value="sim">
+
+						<input type="text" name="nameuser" placeholder="Your Name*:" value="<?php echo getUserName(); ?>" required>
+						
+						<input type="text" name="email" placeholder="Your Email*:" required>
+
+						<input type="text" name="phone" placeholder="Your Phone*:">
+
+
+						<textarea class="ptb-10" name="message" placeholder="Your Comment"></textarea>
+
+						<button class="btn-fill-primary plr-30" rows="4" cols="50" type="submit"><b>LEAVE A COMMENT</b></button>
+					</form>
+				
 				</div><!-- col-md-9 -->
+
+
+
+
+
+
+
 				
 				<div class="d-none d-md-block d-lg-none col-md-3"></div>
 				<div class="col-md-6 col-lg-4">
 					<div class="pl-20 pl-md-0">
 						<ul class="list-block list-li-ptb-15 list-btm-border-white bg-primary text-center">
 							<?php require $this->checkTemplate("categories-menu");?>
+
 						</ul>
 						
 						<div class="mtb-50">
 							<?php require $this->checkTemplate("popularPosts");?>
+
 						</div><!-- mtb-50 -->
 						
 						<div class="mtb-50 pos-relative">
@@ -109,6 +168,7 @@
 						</div><!-- mtb-50 -->
 						
 						<?php require $this->checkTemplate("newsLetter");?>
+
 						
 					</div><!--  pl-20 -->
 				</div><!-- col-md-3 -->

@@ -1,6 +1,7 @@
 <?php
 
 use \Pcode\Model\User;
+use \Pcode\Model\Post;
 use \Pcode\Model\Notice;
 
 function formatDate($date)
@@ -40,6 +41,7 @@ function checkLogin($inadmin = true)
 	return User::checkLogin($inadmin);
 }
 
+
 //Pegar o nome do usuário
 function getUserName()
 {
@@ -50,6 +52,7 @@ function getUserName()
 
 }
 
+//Pegar e mostrar a foto de perfil do admin
 function getAdminPhoto()
 {
 
@@ -57,7 +60,6 @@ function getAdminPhoto()
 
 	return $user->getdesphoto();
 }
-
 //Pega a quantidade de AVISOS(notificações) e mostra pro usuário
 function getNoticesNrQtd()
 {
