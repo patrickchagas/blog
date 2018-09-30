@@ -10,7 +10,9 @@ $app->get('/admin', function() {
 	//Verificar se o usuário está logado
 	User::verifyLogin();
 
-	$user = new User();
+	$users = new User();
+
+	$users = User::listUsersAdmin();
 
 	$posts = new Post();
 
@@ -19,7 +21,8 @@ $app->get('/admin', function() {
 	$page = new PageAdmin();
 
 	$page->setTpl("index", array(
-		'posts'=>Post::checkList($posts)
+		'posts'=>Post::checkList($posts),
+		'users'=>User::checkList($users)
 	));
 
 });

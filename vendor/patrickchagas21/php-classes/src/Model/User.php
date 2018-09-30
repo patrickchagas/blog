@@ -140,6 +140,17 @@ class User extends Model {
 
 	}
 
+	//Admin - Tela Principal - Widgets - Mostrar os Administradores
+	public static function listUsersAdmin()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson)  WHERE a.inadmin = '1' ORDER BY b.person");
+
+	}
+
+
 	public static function checkList($list)
 	{
 		foreach ($list as &$row) {
