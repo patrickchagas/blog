@@ -525,7 +525,6 @@ class User extends Model {
 	}
 
 	//Paginação 
-
 	public static function getPage($page = 1, $itemsPerPage = 10)
 	{
 
@@ -552,6 +551,7 @@ class User extends Model {
 
 	}
 
+	//Busca
 	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
 	{
 

@@ -222,6 +222,57 @@ class Category extends Model{
 		return $sql->select("SELECT * FROM tb_postscategories a INNER JOIN tb_posts b USING(idpost) WHERE idcategory = 14");
 
 	}
+
+	public static function getPage($page = 1, $itemsPerPage = 10)
+	{
+		$start = ($page - 1 ) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+			FROM tb_categories 
+			ORDER BY descategory
+			LIMIT $start, $itemsPerPage;
+		");
+
+		$resultsTotal = $sql->select("SELECT FOUND_ROWS() as nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultsTotal[0]["nrtotal"],
+			'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
+
+	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
+	{
+		$start = ($page - 1 ) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+			FROM tb_categories 
+			WHERE descategory LIKE :search 
+			ORDER BY descategory
+			LIMIT $start, $itemsPerPage;
+		", [
+			':search'=>'%'.$search.'%'
+		]);
+
+		$resultsTotal = $sql->select("SELECT FOUND_ROWS() as nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultsTotal[0]["nrtotal"],
+			'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
 	
 }
 
