@@ -9,15 +9,37 @@ $app->get('/admin/notices', function() {
 
 	User::verifyLogin();
 
-	$notices = new Notice();
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "" ;
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-	$notices = Notice::listAll();
+	if($search != ''){
 
+		$pagination = Notice::getPageSearch($search, $page);
+
+	} else {
+
+		$pagination = Notice::getPage($page);
+
+	}
+
+	$pages = [];
+
+	for ($x = 0; $x < $pagination['pages']; $x++) { 
+		array_push($pages, [
+			'href'=>'/admin/notices?'.http_build_query([
+				'page'=>$x+1,
+				'search'=>$search
+			]),
+			'text'=>$x+1
+		]);
+	}
 	$page = new PageAdmin();
 
-	$page->setTpl('notices', array(
-		'notices'=>$notices
-	));
+	$page->setTpl("notices", [
+		"notices"=>$pagination['data'],
+		"search"=>$search,
+		"pages"=>$pages
+	]);
 
 });
 

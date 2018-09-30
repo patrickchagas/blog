@@ -81,6 +81,60 @@ class Notice extends Model { //Avisos
 
 	}
 
+	//Paginação
+	public static function getPage($page, $itemsPerPage = 10)
+	{
+
+		$start = ($page - 1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+			FROM tb_notices 
+			ORDER BY notice
+			LIMIT $start, $itemsPerPage;
+		");
+
+		$resultsTotal = $sql->select("SELECT FOUND_ROWS() as nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultsTotal[0]["nrtotal"],
+			'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
+
+	//Busca
+	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
+	{
+		$start = ($page - 1 ) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+			FROM tb_notices 
+			WHERE notice LIKE :search OR description LIKE :search 
+			ORDER BY notice
+			LIMIT $start, $itemsPerPage;
+		", [
+			':search'=>'%'.$search.'%'
+		]);
+
+		$resultsTotal = $sql->select("SELECT FOUND_ROWS() as nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultsTotal[0]["nrtotal"],
+			'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
+
 
 }
 
