@@ -23,7 +23,10 @@
 					<h3 class="mt-30"><b><?php echo htmlspecialchars( $post["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></h3>
 					<ul class="list-li-mr-20 mtb-15">
 						<li>by <a href="#"><b><?php echo htmlspecialchars( $post["publishedby"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </b></a> <?php echo formatDate($post["dtregister"]); ?></li>
-						<li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i><?php echo htmlspecialchars( $post["visits"], ENT_COMPAT, 'UTF-8', FALSE ); ?></li>
+						
+						<li><a class="btn-brdr-grey btn-b-sm plr-15 mr-10 mt-5" id="addCount" href="#"><b>LIKE</b></a></li>
+						
+						<li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>1 numero de visitas</li>
 						<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>30</li>
 					</ul>
 					

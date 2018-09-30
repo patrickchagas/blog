@@ -516,16 +516,68 @@ class User extends Model {
 		$_SESSION[User::SUCCESS] = NULL;	
 	}
 
-
-
-
-
 	public static function getPasswordHash($password)
 	{
 
 		return password_hash($password, PASSWORD_DEFAULT, [
 			'cost'=>12
 		]);
+	}
+
+	//Paginação 
+
+	public static function getPage($page = 1, $itemsPerPage = 10)
+	{
+
+		$start = ($page-1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+			FROM tb_users a 
+			INNER JOIN tb_persons b USING(idperson) 
+			ORDER BY b.person
+			LIMIT $start, $itemsPerPage;			
+		");
+
+		$resultsTotal = $sql->select("SELECT FOUND_ROWS() as nrtotal;");
+
+		return array(
+			'data'=>User::checkList($results),
+			'total'=>(int)$resultsTotal[0]["nrtotal"],
+			'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage)
+		);
+
+	}
+
+	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
+	{
+
+		$start = ($page - 1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+				SELECT SQL_CALC_FOUND_ROWS* 
+				FROM tb_users a 
+				INNER JOIN tb_persons b USING(idperson) 
+				WHERE b.person LIKE :search OR b.email = :search OR a.login LIKE :search
+				ORDER BY b.person
+				LIMIT $start, $itemsPerPage;
+			", array(
+				':search'=>'%'.$search.'%'
+			));
+
+		$resultsTotal = $sql->select("SELECT FOUND_ROWS() as nrtotal;");
+
+		return array(
+			'data'=>$results,
+			'total'=>(int)$resultsTotal[0]["nrtotal"],
+			'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage)
+		);
+
 	}
 
 

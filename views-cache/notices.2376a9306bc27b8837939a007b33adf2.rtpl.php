@@ -35,10 +35,11 @@
                 </thead>
                 <tbody>
                  <?php $counter1=-1;  if( isset($notices) && ( is_array($notices) || $notices instanceof Traversable ) && sizeof($notices) ) foreach( $notices as $key1 => $value1 ){ $counter1++; ?>
+
                   <tr>
                     <td><?php echo htmlspecialchars( $value1["idnotice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["notice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo textStyle($value1["description"]); ?></td>
                     <td><?php echo htmlspecialchars( $value1["active"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td>
 
@@ -48,6 +49,7 @@
                     </td>
                   </tr>
                  <?php } ?>
+
                 </tbody>
               </table>
             </iv>
