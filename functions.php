@@ -3,6 +3,7 @@
 use \Pcode\Model\User;
 use \Pcode\Model\Post;
 use \Pcode\Model\Notice;
+use \Pcode\Db\Sql;
 
 function formatDate($date)
 {
@@ -71,6 +72,5 @@ function getNoticesNrQtd()
 	return $totals['nrqtd'];
 
 }
-
 
 ?>
