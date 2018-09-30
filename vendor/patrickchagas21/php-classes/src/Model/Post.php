@@ -17,6 +17,16 @@ class Post extends Model {
 
 	}
 
+	//Listar as 5 postagens recentes no WIDGET DA pagina Principal - ADMIN
+	public static function listPostsRecents()
+	{
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_posts ORDER BY idpost DESC LIMIT 5");		
+
+	}
+
+
 	public static function checkList($list)
 	{
 		foreach ($list as &$row) {

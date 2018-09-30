@@ -2,6 +2,7 @@
 
 use \Pcode\PageAdmin;
 use \Pcode\Model\User;
+use \Pcode\Model\Post;
 
 //Página admin
 $app->get('/admin', function() {
@@ -11,9 +12,15 @@ $app->get('/admin', function() {
 
 	$user = new User();
 
+	$posts = new Post();
+
+	$posts = Post::listPostsRecents(); // widget dos 5 posts mais recentes
+
 	$page = new PageAdmin();
 
-	$page->setTpl("index");
+	$page->setTpl("index", array(
+		'posts'=>Post::checkList($posts)
+	));
 
 });
 
