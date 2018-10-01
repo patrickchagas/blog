@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>Administração | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -34,6 +34,18 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
+
+    <?php if( $msgError != ''  ){ ?>
+
+      <div class="alert alert-danger text-center">
+          
+         <?php echo htmlspecialchars( $msgError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+
+      </div>
+    <?php } ?>
+
+
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form action="/admin/login" method="post">

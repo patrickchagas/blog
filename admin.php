@@ -35,12 +35,30 @@ $app->get('/admin/login', function() {
 		"header"=>false,
 		"footer"=>false
 	]);
-	$page->setTpl("login");
+
+	$page->setTpl("login", array(
+		"msgError"=>User::getError()
+	));
 
 });
 
 //receber os dados do formulário do login
 $app->post('/admin/login', function() {
+
+	// Validação dos campos de login
+	if(!isset($_POST["login"]) || $_POST['login'] === '') {
+
+		User::setError("Preencha o login");
+		header("Location: /admin/login");
+		exit;
+	}
+
+	if(!isset($_POST['despassword']) || $_POST['despassword'] === '') {
+
+		User::setError("Preencha a senha");
+		header("Location: /admin/login");
+		exit;
+	}
 
 	User::login($_POST["login"], $_POST["despassword"]);
 

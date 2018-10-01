@@ -1,4 +1,4 @@
-# Projeto Blog
+# Projeto Blog - Sistema de Postagem Completo!
 
 Projeto desenvolvido a fins de estudos - Treinamento PHP 7<br>
 
