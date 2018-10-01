@@ -73,5 +73,17 @@ function getNoticesNrQtd()
 
 }
 
+// Mostrar a quantidade de usuários administrativos e exibe no widget
+function getUsersNrQtd()
+{
+
+	$user = new User();
+
+	$totals = $user->getUsersTotals();
+
+	return $totals['nrqtd'];
+
+}
+
 
 ?>

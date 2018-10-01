@@ -591,6 +591,25 @@ class User extends Model {
 
 	}
 
+	// Mostrar a quantidade de usuários administrativos e exibe no widget
+	public function getUsersTotals()
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT SUM(login) as login, COUNT(*) AS nrqtd FROM tb_users WHERE inadmin = '1' ");
+
+		if(count($results) > 0 ) {
+
+			return $results[0];
+			
+		} else {
+
+			return [];
+		}
+
+	}
+
 
 
 

@@ -230,7 +230,7 @@
                   <h3 class="box-title">Membros da Equipe</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger">8 New Members</span>
+                    <span class="label label-danger"><?php echo getUsersNrQtd(); ?> Membros</span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
