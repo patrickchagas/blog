@@ -8,6 +8,7 @@ use \Pcode\DB\Sql;
 
 class Visits extends Model{
 
+	//Contar o numero de visitantes 
 	public function countVisits()
 	{	
 
