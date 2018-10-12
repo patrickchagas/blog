@@ -3,12 +3,15 @@
 			<div class="h-2-3 h-sm-auto oflow-hidden">
 		
 				<?php require $this->checkTemplate("featured");?>
+
 				
 				<?php require $this->checkTemplate("featured-two");?>
+
 
 			</div><!-- h-2-3 -->
 			
 				<?php require $this->checkTemplate("featured-three");?>
+
 
 		</div><!-- h-100vh -->
 	</div><!-- container -->
@@ -79,7 +82,12 @@
 					<div class="pl-20 pl-md-0">
 						<ul class="list-block list-li-ptb-15 list-btm-border-white bg-primary text-center">
 							<?php require $this->checkTemplate("categories-menu");?>
+
 						</ul>
+
+						<div class="mtb-50">
+							<?php require $this->checkTemplate("visitors");?>							
+						</div><!-- mtb-50 -->
 					
 						<div class="mtb-50">
 							<?php require $this->checkTemplate("popularPosts");?>							
@@ -98,6 +106,7 @@
 						</div><!-- mtb-50 -->
 						
 						<?php require $this->checkTemplate("newsLetter");?>
+
 						
 					</div><!--  pl-20 -->
 				</div><!-- col-md-3 -->

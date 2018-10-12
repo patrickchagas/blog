@@ -4,18 +4,17 @@ use \Pcode\Page;
 use \Pcode\Model\Post;
 use \Pcode\Model\Comment;
 
-
 //Detalhes da postagem
 $app->get('/posts/:desurl', function($desurl) {
-
 	$post = new Post();
 
 	$post->getFromURL($desurl);
-
+	
 	//Comentários
 	$comment = new Comment();
 
 	$comment = Comment::listCommentPost(); // listar todos os comentários
+
 
 	$page = new Page();
 
@@ -26,6 +25,8 @@ $app->get('/posts/:desurl', function($desurl) {
 	));
 
 });
+
+
 
 //Cadastrar um novo comentário
 $app->post('/posts/:desurl', function($desurl) {

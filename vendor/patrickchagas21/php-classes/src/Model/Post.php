@@ -3,6 +3,7 @@
 namespace Pcode\Model;
 
 use \Pcode\DB\Sql;
+use \Pcode\DB\Mysqli;
 use \Pcode\Model;
 
 class Post extends Model {

@@ -1,9 +1,9 @@
-<!-- Content Wrapper. Contains page content -->
+Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Lista de Notificações
+    Lista de Visitantes
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,8 +20,9 @@
             
             <div class="box-header">
               <a href="/admin/notices/create" class="btn btn-success">Cadastrar Aviso</a>
+
               <div class="box-tools">
-                <form action="/admin/notices">
+                <form action="/admin/visits">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="search" class="form-control pull-right" placeholder="Search" value="{$search}">
                     <div class="input-group-btn">
@@ -30,45 +31,41 @@
                   </div>
                 </form>
               </div>
+
             </div>
 
             <div class="box-body no-padding">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 10px">#ID</th>
-                    <th>Nome do Aviso</th>
-                    <th>Descrição do Aviso</th>
-                    <th>Exibir</th>
-                    <th style="width: 140px">&nbsp;</th>
+                    <th style="width: 150px">#Número do Visitante</th>
+                    <th>IP do Visitante</th>
+                    <th>Data da Visita</th>
+                    <th>Hora da visita</th>
+                    <th style="width: 20px">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
-                 {loop="$notices"}
+                 {loop="$visits"}
                   <tr>
-                    <td>{$value.idnotice}</td>
-                    <td>{$value.notice}</td>
-                    <td>{function="textStyle($value.description)"}</td>
-                    <td>{$value.active}</td>
-                    <td>
-
-                      <a href="/admin/notices/{$value.idnotice}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-
-                      <a href="/admin/notices/{$value.idnotice}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
-                    </td>
+                    <td>{$value.idvisits}</td>
+                    <td>{$value.ip}</td>
+                    <td>{function="formatDate($value.data)"}</td>
+                    <td>{$value.hora}</td>
                   </tr>
                  {/loop}
                 </tbody>
               </table>
             </iv>
             <!-- /.box-body -->
-             <div class="box-footer clearfix">
+            <div class="box-footer clearfix">
               <ul class="pagination pagination-sm no-margin pull-right">
                 {loop="$pages"}
                 <li><a href="{$value.href}">{$value.text}</a></li>
                 {/loop}
               </ul>
             </div>
+    
           </div>
     </div>
   </div>
@@ -76,4 +73,4 @@
 </section>
 <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
+<!-- /.content-wrapper

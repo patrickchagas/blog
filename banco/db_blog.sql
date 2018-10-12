@@ -16,6 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `tb_answers`
+--
+
+DROP TABLE IF EXISTS `tb_answers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_answers` (
+  `idanswers` int(11) NOT NULL AUTO_INCREMENT,
+  `nameuser` varchar(255) DEFAULT NULL,
+  `email` varchar(250) NOT NULL,
+  `phone` varchar(21) NOT NULL,
+  `message` text NOT NULL,
+  `answer` text,
+  `identification` varchar(200) NOT NULL,
+  `active` varchar(5) NOT NULL,
+  `dtanswer` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idanswers`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_answers`
+--
+
+LOCK TABLES `tb_answers` WRITE;
+/*!40000 ALTER TABLE `tb_answers` DISABLE KEYS */;
+INSERT INTO `tb_answers` VALUES (1,'Administrador','aulascursophp7@gmail.com','2122223333','<p><strong>The Flash</strong></p>','Top','serie-the-flash','sim','2018-09-29 03:23:34');
+/*!40000 ALTER TABLE `tb_answers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_categories`
 --
 
@@ -58,7 +89,7 @@ CREATE TABLE `tb_comments` (
   `active` varchar(3) DEFAULT 'sim',
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcomment`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +98,7 @@ CREATE TABLE `tb_comments` (
 
 LOCK TABLES `tb_comments` WRITE;
 /*!40000 ALTER TABLE `tb_comments` DISABLE KEYS */;
-INSERT INTO `tb_comments` VALUES (1,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Mr Robot</p>','mr-robot','sim','2018-09-28 10:24:32'),(2,'Administrador','aulascursophp7@gmail.com','2122223333','<p>The Flash</p>','serie-the-flash','sim','2018-09-28 10:24:50'),(3,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Mr Robot 2</p>','mr-robot','sim','2018-09-28 15:33:31'),(4,'Patrick','aulascursophp7@gmail.com','2122223333','<p>&Oacute;tima s&eacute;rie!!!</p>','serie-the-flash','sim','2018-09-28 15:34:24'),(6,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Uma das melhores s&eacute;ries que j&aacute; assisti, pena que cancelaram!</p>','scorpion-serie','sim','2018-09-28 15:50:35');
+INSERT INTO `tb_comments` VALUES (1,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Mr Robot</p>','mr-robot','sim','2018-09-28 10:24:32'),(2,'Administrador','aulascursophp7@gmail.com','2122223333','<p>The Flash</p>','serie-the-flash','sim','2018-09-28 10:24:50'),(3,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Mr Robot 2</p>','mr-robot','sim','2018-09-28 15:33:31'),(4,'Patrick','aulascursophp7@gmail.com','2122223333','<p>&Oacute;tima s&eacute;rie!!!</p>','serie-the-flash','sim','2018-09-28 15:34:24'),(6,'Administrador','aulascursophp7@gmail.com','2122223333','<p>Uma das melhores s&eacute;ries que j&aacute; assisti, pena que cancelaram!</p>','scorpion-serie','sim','2018-09-28 15:50:35'),(7,'Patrick','patrickchagas21@gmail.com','2122223333','<p>Mr robot &eacute; mt bom!!</p>','mr-robot','sim','2018-10-09 12:09:55');
 /*!40000 ALTER TABLE `tb_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +126,7 @@ CREATE TABLE `tb_notices` (
 
 LOCK TABLES `tb_notices` WRITE;
 /*!40000 ALTER TABLE `tb_notices` DISABLE KEYS */;
-INSERT INTO `tb_notices` VALUES (1,'Manutencao','<p><strong>O site passar&aacute; por algumas atualiza&ccedil;&otilde;es.</strong></p>','nao','Administrador','2018-09-26 01:06:42'),(2,'Nova manutenÃ§Ã£o ','<p><strong>O site sofrer&aacute; algumas atualiza&ccedil;&otilde;es para melhora de desempenho, ent&atilde;o algumas funcionalidades estar&atilde;o desativadas, obrigado pela compreens&atilde;o!</strong></p>','sim','Administrador','2018-09-26 13:05:37');
+INSERT INTO `tb_notices` VALUES (1,'ManutenÃ§Ã£o','<p><strong>O site passar&aacute; por algumas atualiza&ccedil;&otilde;es.</strong></p>','nao','Administrador','2018-09-26 01:06:42'),(2,'Nova manutenÃ§Ã£o ','<p><strong>O site sofrer&aacute; algumas atualiza&ccedil;&otilde;es para melhora de desempenho, ent&atilde;o algumas funcionalidades estar&atilde;o desativadas, obrigado pela compreens&atilde;o!</strong></p>','sim','Administrador','2018-09-26 13:05:37');
 /*!40000 ALTER TABLE `tb_notices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,6 +171,7 @@ CREATE TABLE `tb_posts` (
   `active` varchar(20) NOT NULL,
   `desurl` varchar(150) NOT NULL,
   `publishedby` varchar(150) NOT NULL,
+  `visits` varchar(255) NOT NULL DEFAULT '0',
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpost`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
@@ -151,7 +183,7 @@ CREATE TABLE `tb_posts` (
 
 LOCK TABLES `tb_posts` WRITE;
 /*!40000 ALTER TABLE `tb_posts` DISABLE KEYS */;
-INSERT INTO `tb_posts` VALUES (1,'Scorpion','<p><strong>Um g&ecirc;nio exc&ecirc;ntrico forma uma rede internacional de superg&ecirc;nios para atuar como a &uacute;ltima linha de defesa contra as amea&ccedil;as complexas do mundo moderno.</strong></p>\r\n<h2>&nbsp;</h2>\r\n<h2>Enredo</h2>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Inspirado em uma hist&oacute;ria real, conta a hist&oacute;ria do exc&ecirc;ntrico g&ecirc;nio,<a style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Walter O\'Brien\" href=\"https://pt.wikipedia.org/wiki/Walter_O%27Brien\">Walter O\'Brien</a>, e de sua equipe composta por um comportamentalista(<a class=\"mw-redirect\" style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Behaviorista\" href=\"https://pt.wikipedia.org/wiki/Behaviorista\">Behaviorismo</a>), Toby, uma calculadora humana, Sylvester, e uma prod&iacute;gio da mec&acirc;nica, Happy. Todos s&atilde;o pessoas &oacute;timas de esp&iacute;rito, mas que n&atilde;o conseguem se socializar com a maioria das pessoas e por isso recebem a ajuda de uma ex atendente de lanchonete chamada Paige que tem um filho g&ecirc;nio, Ralph.</p>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Quando um problema s&eacute;rio surge no espa&ccedil;o a&eacute;reo americano o agente Cabe Gallo resolve recrutar a equipe de g&ecirc;nios, j&aacute; que n&atilde;o existe nenhuma outra equipe capaz de resolver o problema. A partir da&iacute;, e agora com o apoio do governo, eles se tornam oficialmente a equipe Scorpion e transformam-se na &uacute;ltima linha de defesa contra amea&ccedil;as complexas ao redor do mundo.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>','sim','scorpion-serie','Patrick Chagas','2018-09-20 22:32:04'),(7,'Nokia marca evento de lanÃ§amento para 04/10; saiba o que mais vem por aÃ­...','<p>Outubro de 2018 est&aacute; se tornando um dos meses mais movimentados para o mercado de tecnologia, especialmente no que diz respeito a smartphones. Al&eacute;m de eventos da Motorola, LG, Huawei, Google, OnePlus e Samsung, a Nokia tamb&eacute;m resolveu entrar na festa e</p>','sim','nokia-7plus','Administrador','2018-09-20 23:02:50'),(20,'The Flash','<p>Depois de ser atingido por um raio, Barry Allen acorda de seu coma para descobrir que recebeu o poder da super velocidade, se tornando o Flash, lutando contra o crime em Central City.</p>','sim','serie-the-flash','Administrador','2018-09-21 03:09:30'),(21,'Lorem Ipsum','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros hendrerit luctus a eu ex. Praesent vulputate sagittis sapien, non cursus nulla consectetur eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros h</p>','sim','lorem-ipsum','Administrador','2018-09-21 13:24:44'),(24,'The Big Bang Theory','<p>Uma mulher que se muda para um apartamento do outro lado do corredor de dois f&iacute;sicos brilhantes, mas socialmente desajeitados, mostra-lhes o qu&atilde;o pouco sabem sobre a vida fora do laborat&oacute;rio.</p>','sim','the-big-bang-theory','Administrador','2018-09-21 13:28:16'),(25,'Testando','<p>Testando</p>','sim','testando','Administrador','2018-09-21 13:31:24'),(29,'Mr Robot','<p>Elliot, um brilhante mas altamente inst&aacute;vel jovem engenheiro de seguran&ccedil;a cibern&eacute;tica e hacker vigilante, torna-se uma figura chave em um jogo complexo de dom&iacute;nio global quando ele e seus aliados sombrios tentam derrubar a corpora&ccedil;&atilde;o corrupta para a</p>','sim','mr-robot','Patrick Chagas','2018-09-21 15:01:56'),(30,'Code','<p>Web Developer</p>','sim','code-web-developer','Administrador','2018-09-22 03:37:45'),(31,'Ai vocÃª passa...','<p>Ai voc&ecirc; passa...</p>','sim','alanzoka','Administrador','2018-09-22 03:44:44'),(32,'FIFA 19 terÃ¡ seleÃ§Ã£o brasileira com nomes genÃ©ricos','<p>Somente Neymar possui um avatar fidedigno no game Com lan&ccedil;amento marcado para dia 25 de setembro, FIFA 19 pode decepcionar aqueles que queriam usar a sele&ccedil;&atilde;o de Philippe Coutinho, Marcelo e Casemiro: a escala&ccedil;&atilde;o do time brasileiro no game &eacute; gen&eacute;ri</p>','sim','fifa-19-tera-selecao-brasileira-com-nomes-genericos','Administrador','2018-09-22 17:12:36'),(33,'Web Developer','<p><strong><span style=\"color: #222222; font-family: sans-serif;\">Este &eacute; o profissional que trabalha desenvolvendo websites, podendo ser um Web Designer (Desenvolvedor do Layout), ou Web Developer(Desenvolvedor de sistemas).&nbsp;</span></strong></p>','sim','web-developer','Administrador','2018-09-25 03:42:51'),(37,'OlÃ¡ Mundo!','<p><strong>Ol&aacute; Mundo!</strong></p>','sim','ola-mundo','Administrador','2018-09-27 15:22:28');
+INSERT INTO `tb_posts` VALUES (1,'Scorpion','<p><strong>Um g&ecirc;nio exc&ecirc;ntrico forma uma rede internacional de superg&ecirc;nios para atuar como a &uacute;ltima linha de defesa contra as amea&ccedil;as complexas do mundo moderno.</strong></p>\r\n<h2>&nbsp;</h2>\r\n<h2>Enredo</h2>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Inspirado em uma hist&oacute;ria real, conta a hist&oacute;ria do exc&ecirc;ntrico g&ecirc;nio,<a style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Walter O\'Brien\" href=\"https://pt.wikipedia.org/wiki/Walter_O%27Brien\">Walter O\'Brien</a>, e de sua equipe composta por um comportamentalista(<a class=\"mw-redirect\" style=\"text-decoration-line: none; color: #0b0080; background: none;\" title=\"Behaviorista\" href=\"https://pt.wikipedia.org/wiki/Behaviorista\">Behaviorismo</a>), Toby, uma calculadora humana, Sylvester, e uma prod&iacute;gio da mec&acirc;nica, Happy. Todos s&atilde;o pessoas &oacute;timas de esp&iacute;rito, mas que n&atilde;o conseguem se socializar com a maioria das pessoas e por isso recebem a ajuda de uma ex atendente de lanchonete chamada Paige que tem um filho g&ecirc;nio, Ralph.</p>\r\n<p style=\"margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif;\">Quando um problema s&eacute;rio surge no espa&ccedil;o a&eacute;reo americano o agente Cabe Gallo resolve recrutar a equipe de g&ecirc;nios, j&aacute; que n&atilde;o existe nenhuma outra equipe capaz de resolver o problema. A partir da&iacute;, e agora com o apoio do governo, eles se tornam oficialmente a equipe Scorpion e transformam-se na &uacute;ltima linha de defesa contra amea&ccedil;as complexas ao redor do mundo.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>','sim','scorpion-serie','Patrick Chagas','20','2018-09-20 22:32:04'),(7,'Nokia marca evento de lanÃ§amento para 04/10; saiba o que mais vem por aÃ­...','<p>Outubro de 2018 est&aacute; se tornando um dos meses mais movimentados para o mercado de tecnologia, especialmente no que diz respeito a smartphones. Al&eacute;m de eventos da Motorola, LG, Huawei, Google, OnePlus e Samsung, a Nokia tamb&eacute;m resolveu entrar na festa e</p>','sim','nokia-7plus','Administrador','0','2018-09-20 23:02:50'),(20,'The Flash','<p>Depois de ser atingido por um raio, Barry Allen acorda de seu coma para descobrir que recebeu o poder da super velocidade, se tornando o Flash, lutando contra o crime em Central City.</p>','sim','serie-the-flash','Administrador','0','2018-09-21 03:09:30'),(21,'Lorem Ipsum','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros hendrerit luctus a eu ex. Praesent vulputate sagittis sapien, non cursus nulla consectetur eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non dolor at eros h</p>','sim','lorem-ipsum','Administrador','0','2018-09-21 13:24:44'),(24,'The Big Bang Theory','<p>Uma mulher que se muda para um apartamento do outro lado do corredor de dois f&iacute;sicos brilhantes, mas socialmente desajeitados, mostra-lhes o qu&atilde;o pouco sabem sobre a vida fora do laborat&oacute;rio.</p>','sim','the-big-bang-theory','Administrador','0','2018-09-21 13:28:16'),(25,'Testando','<p>Testando</p>','sim','testando','Administrador','0','2018-09-21 13:31:24'),(29,'Mr Robot','<p>Elliot, um brilhante mas altamente inst&aacute;vel jovem engenheiro de seguran&ccedil;a cibern&eacute;tica e hacker vigilante, torna-se uma figura chave em um jogo complexo de dom&iacute;nio global quando ele e seus aliados sombrios tentam derrubar a corpora&ccedil;&atilde;o corrupta para a</p>','sim','mr-robot','Patrick Chagas','0','2018-09-21 15:01:56'),(30,'Code','<p>Web Developer</p>','sim','code-web-developer','Administrador','0','2018-09-22 03:37:45'),(31,'Ai vocÃª passa...','<p>Ai voc&ecirc; passa...</p>','sim','alanzoka','Administrador','0','2018-09-22 03:44:44'),(32,'FIFA 19 terÃ¡ seleÃ§Ã£o brasileira com nomes genÃ©ricos','<p>Somente Neymar possui um avatar fidedigno no game Com lan&ccedil;amento marcado para dia 25 de setembro, FIFA 19 pode decepcionar aqueles que queriam usar a sele&ccedil;&atilde;o de Philippe Coutinho, Marcelo e Casemiro: a escala&ccedil;&atilde;o do time brasileiro no game &eacute; gen&eacute;ri</p>','sim','fifa-19-tera-selecao-brasileira-com-nomes-genericos','Administrador','0','2018-09-22 17:12:36'),(33,'Web Developer','<p><strong><span style=\"color: #222222; font-family: sans-serif;\">Este &eacute; o profissional que trabalha desenvolvendo websites, podendo ser um Web Designer (Desenvolvedor do Layout), ou Web Developer(Desenvolvedor de sistemas).&nbsp;</span></strong></p>','sim','web-developer','Administrador','0','2018-09-25 03:42:51'),(37,'OlÃ¡ Mundo!','<p><strong>Ol&aacute; Mundo!</strong></p>','sim','ola-mundo','Administrador','0','2018-09-27 15:22:28');
 /*!40000 ALTER TABLE `tb_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,12 +354,90 @@ LOCK TABLES `tb_videoscategories` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tb_visits`
+--
+
+DROP TABLE IF EXISTS `tb_visits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_visits` (
+  `idvisits` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(40) NOT NULL,
+  `data` varchar(30) NOT NULL,
+  `hora` varchar(30) NOT NULL,
+  PRIMARY KEY (`idvisits`)
+) ENGINE=InnoDB AUTO_INCREMENT=275 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_visits`
+--
+
+LOCK TABLES `tb_visits` WRITE;
+/*!40000 ALTER TABLE `tb_visits` DISABLE KEYS */;
+INSERT INTO `tb_visits` VALUES (1,'179.158.185.249','2018/10/12','03:02'),(2,'179.158.185.249','2018/10/12','03:02'),(3,'179.158.185.249','2018/10/12','03:02'),(4,'179.158.185.249','2018/10/12','03:02'),(5,'179.158.185.249','2018/10/12','03:03'),(6,'179.158.185.249','2018/10/12','03:03'),(7,'179.158.185.249','2018/10/12','03:03'),(8,'179.158.185.249','2018/10/12','03:03'),(9,'179.158.185.249','2018/10/12','03:03'),(10,'179.158.185.249','2018/10/12','03:03'),(11,'179.158.185.249','2018/10/12','03:03'),(12,'179.158.185.249','2018/10/12','03:03'),(13,'179.158.185.249','2018/10/12','03:03'),(14,'179.158.185.249','2018/10/12','03:03'),(15,'179.158.185.249','2018/10/12','03:03'),(16,'179.158.185.249','2018/10/12','03:03'),(17,'179.158.185.249','2018/10/12','03:03'),(18,'179.158.185.249','2018/10/12','03:03'),(19,'179.158.185.249','2018/10/12','03:03'),(20,'179.158.185.249','2018/10/12','03:03'),(21,'179.158.185.249','2018/10/12','03:03'),(22,'179.158.185.249','2018/10/12','03:03'),(23,'179.158.185.249','2018/10/12','03:03'),(24,'179.158.185.249','2018/10/12','03:03'),(25,'179.158.185.249','2018/10/12','03:03'),(26,'179.158.185.249','2018/10/12','03:03'),(27,'179.158.185.249','2018/10/12','03:03'),(28,'179.158.185.249','2018/10/12','03:03'),(29,'179.158.185.249','2018/10/12','03:03'),(30,'179.158.185.249','2018/10/12','03:03'),(31,'179.158.185.249','2018/10/12','03:03'),(32,'179.158.185.249','2018/10/12','03:03'),(33,'179.158.185.249','2018/10/12','03:03'),(34,'179.158.185.249','2018/10/12','03:03'),(35,'179.158.185.249','2018/10/12','03:03'),(36,'179.158.185.249','2018/10/12','03:03'),(37,'179.158.185.249','2018/10/12','03:03'),(38,'179.158.185.249','2018/10/12','03:03'),(39,'179.158.185.249','2018/10/12','03:03'),(40,'179.158.185.249','2018/10/12','03:03'),(41,'179.158.185.249','2018/10/12','03:03'),(42,'179.158.185.249','2018/10/12','03:03'),(43,'179.158.185.249','2018/10/12','03:03'),(44,'179.158.185.249','2018/10/12','03:03'),(45,'179.158.185.249','2018/10/12','03:03'),(46,'179.158.185.249','2018/10/12','03:03'),(47,'179.158.185.249','2018/10/12','03:03'),(48,'179.158.185.249','2018/10/12','03:03'),(49,'179.158.185.249','2018/10/12','03:03'),(50,'179.158.185.249','2018/10/12','03:03'),(51,'179.158.185.249','2018/10/12','03:03'),(52,'179.158.185.249','2018/10/12','03:03'),(53,'179.158.185.249','2018/10/12','03:03'),(54,'179.158.185.249','2018/10/12','03:03'),(55,'179.158.185.249','2018/10/12','03:03'),(56,'179.158.185.249','2018/10/12','03:03'),(57,'179.158.185.249','2018/10/12','03:03'),(58,'179.158.185.249','2018/10/12','03:03'),(59,'179.158.185.249','2018/10/12','03:03'),(60,'179.158.185.249','2018/10/12','03:03'),(61,'179.158.185.249','2018/10/12','03:03'),(62,'179.158.185.249','2018/10/12','03:03'),(63,'179.158.185.249','2018/10/12','03:03'),(64,'179.158.185.249','2018/10/12','03:03'),(65,'179.158.185.249','2018/10/12','03:03'),(66,'179.158.185.249','2018/10/12','03:03'),(67,'179.158.185.249','2018/10/12','03:03'),(68,'179.158.185.249','2018/10/12','03:08'),(69,'179.158.185.249','2018/10/12','03:08'),(70,'179.158.185.249','2018/10/12','03:08'),(71,'179.158.185.249','2018/10/12','03:08'),(72,'179.158.185.249','2018/10/12','03:08'),(73,'179.158.185.249','2018/10/12','03:08'),(74,'179.158.185.249','2018/10/12','03:08'),(75,'179.158.185.249','2018/10/12','03:08'),(76,'179.158.185.249','2018/10/12','03:08'),(77,'179.158.185.249','2018/10/12','03:08'),(78,'179.158.185.249','2018/10/12','03:08'),(79,'179.158.185.249','2018/10/12','03:08'),(80,'179.158.185.249','2018/10/12','03:08'),(81,'179.158.185.249','2018/10/12','03:08'),(82,'179.158.185.249','2018/10/12','03:08'),(83,'179.158.185.249','2018/10/12','03:08'),(84,'179.158.185.249','2018/10/12','03:08'),(85,'179.158.185.249','2018/10/12','03:08'),(86,'179.158.185.249','2018/10/12','03:08'),(87,'179.158.185.249','2018/10/12','03:08'),(88,'179.158.185.249','2018/10/12','03:08'),(89,'179.158.185.249','2018/10/12','03:08'),(90,'179.158.185.249','2018/10/12','03:08'),(91,'179.158.185.249','2018/10/12','03:08'),(92,'179.158.185.249','2018/10/12','03:08'),(93,'179.158.185.249','2018/10/12','03:08'),(94,'179.158.185.249','2018/10/12','03:08'),(95,'179.158.185.249','2018/10/12','03:08'),(96,'179.158.185.249','2018/10/12','03:08'),(97,'179.158.185.249','2018/10/12','03:11'),(98,'179.158.185.249','2018/10/12','03:11'),(99,'179.158.185.249','2018/10/12','03:11'),(100,'179.158.185.249','2018/10/12','03:11'),(101,'179.158.185.249','2018/10/12','03:11'),(102,'179.158.185.249','2018/10/12','03:11'),(103,'179.158.185.249','2018/10/12','03:11'),(104,'179.158.185.249','2018/10/12','03:11'),(105,'179.158.185.249','2018/10/12','03:11'),(106,'179.158.185.249','2018/10/12','03:32'),(107,'179.158.185.249','2018/10/12','03:34'),(108,'127.0.0.1','2018/10/12','03:36'),(109,'127.0.0.1','2018/10/12','03:36'),(110,'127.0.0.1','2018/10/12','03:36'),(111,'127.0.0.1','2018/10/12','03:36'),(112,'127.0.0.1','2018/10/12','03:36'),(113,'127.0.0.1','2018/10/12','03:36'),(114,'127.0.0.1','2018/10/12','03:36'),(115,'127.0.0.1','2018/10/12','03:36'),(116,'127.0.0.1','2018/10/12','03:36'),(117,'127.0.0.1','2018/10/12','03:36'),(118,'127.0.0.1','2018/10/12','03:36'),(119,'127.0.0.1','2018/10/12','03:36'),(120,'127.0.0.1','2018/10/12','03:36'),(121,'127.0.0.1','2018/10/12','03:36'),(122,'127.0.0.1','2018/10/12','03:36'),(123,'127.0.0.1','2018/10/12','03:36'),(124,'127.0.0.1','2018/10/12','03:36'),(125,'127.0.0.1','2018/10/12','03:36'),(126,'127.0.0.1','2018/10/12','03:36'),(127,'127.0.0.1','2018/10/12','03:36'),(128,'127.0.0.1','2018/10/12','03:36'),(129,'127.0.0.1','2018/10/12','03:36'),(130,'127.0.0.1','2018/10/12','03:36'),(131,'127.0.0.1','2018/10/12','03:36'),(132,'127.0.0.1','2018/10/12','03:37'),(133,'127.0.0.1','2018/10/12','03:37'),(134,'127.0.0.1','2018/10/12','03:37'),(135,'127.0.0.1','2018/10/12','03:37'),(136,'127.0.0.1','2018/10/12','03:37'),(137,'127.0.0.1','2018/10/12','03:37'),(138,'127.0.0.1','2018/10/12','03:37'),(139,'127.0.0.1','2018/10/12','03:37'),(140,'127.0.0.1','2018/10/12','03:37'),(141,'127.0.0.1','2018/10/12','03:38'),(142,'127.0.0.1','2018/10/12','03:38'),(143,'127.0.0.1','2018/10/12','03:38'),(144,'127.0.0.1','2018/10/12','03:38'),(145,'127.0.0.1','2018/10/12','03:38'),(146,'61.6.84.32','2018/10/12','03:39'),(147,'61.6.84.32','2018/10/12','03:39'),(148,'61.6.84.32','2018/10/12','03:39'),(149,'127.0.0.1','2018/10/12','03:40'),(150,'127.0.0.1','2018/10/12','03:40'),(151,'127.0.0.1','2018/10/12','03:40'),(152,'127.0.0.1','2018/10/12','03:40'),(153,'127.0.0.1','2018/10/12','03:40'),(154,'127.0.0.1','2018/10/12','03:40'),(155,'127.0.0.1','2018/10/12','03:40'),(156,'127.0.0.1','2018/10/12','03:40'),(157,'127.0.0.1','2018/10/12','03:40'),(158,'127.0.0.1','2018/10/12','03:40'),(159,'127.0.0.1','2018/10/12','03:40'),(160,'127.0.0.1','2018/10/12','03:41'),(161,'127.0.0.1','2018/10/12','03:44'),(162,'127.0.0.1','2018/10/12','03:44'),(163,'127.0.0.1','2018/10/12','03:44'),(164,'127.0.0.1','2018/10/12','03:44'),(165,'127.0.0.1','2018/10/12','03:44'),(166,'179.158.185.249','2018/10/12','03:44'),(167,'27.77.223.154','2018/10/12','03:53'),(168,'27.77.223.154','2018/10/12','03:53'),(169,'27.77.223.154','2018/10/12','03:53'),(170,'127.0.0.1','2018/10/12','03:54'),(171,'127.0.0.1','2018/10/12','04:03'),(172,'127.0.0.1','2018/10/12','04:03'),(173,'127.0.0.1','2018/10/12','04:03'),(174,'127.0.0.1','2018/10/12','04:03'),(175,'127.0.0.1','2018/10/12','04:03'),(176,'127.0.0.1','2018/10/12','04:04'),(177,'127.0.0.1','2018/10/12','04:04'),(178,'127.0.0.1','2018/10/12','04:04'),(179,'127.0.0.1','2018/10/12','04:04'),(180,'127.0.0.1','2018/10/12','04:04'),(181,'127.0.0.1','2018/10/12','04:05'),(182,'127.0.0.1','2018/10/12','04:05'),(183,'127.0.0.1','2018/10/12','04:05'),(184,'127.0.0.1','2018/10/12','04:05'),(185,'127.0.0.1','2018/10/12','04:06'),(186,'127.0.0.1','2018/10/12','04:06'),(187,'127.0.0.1','2018/10/12','04:07'),(188,'127.0.0.1','2018/10/12','04:07'),(189,'127.0.0.1','2018/10/12','04:07'),(190,'127.0.0.1','2018/10/12','04:07'),(191,'127.0.0.1','2018/10/12','04:08'),(192,'35.236.7.13','2018/10/12','04:09'),(193,'127.0.0.1','2018/10/12','04:09'),(194,'127.0.0.1','2018/10/12','04:10'),(195,'127.0.0.1','2018/10/12','04:10'),(196,'127.0.0.1','2018/10/12','04:11'),(197,'127.0.0.1','2018/10/12','04:12'),(198,'127.0.0.1','2018/10/12','04:13'),(199,'127.0.0.1','2018/10/12','04:13'),(200,'127.0.0.1','2018/10/12','04:13'),(201,'127.0.0.1','2018/10/12','04:13'),(202,'127.0.0.1','2018/10/12','04:14'),(203,'127.0.0.1','2018/10/12','04:14'),(204,'127.0.0.1','2018/10/12','04:14'),(205,'127.0.0.1','2018/10/12','04:14'),(206,'127.0.0.1','2018/10/12','04:14'),(207,'127.0.0.1','2018/10/12','04:14'),(208,'127.0.0.1','2018/10/12','04:14'),(209,'127.0.0.1','2018/10/12','04:15'),(210,'127.0.0.1','2018/10/12','04:16'),(211,'127.0.0.1','2018/10/12','04:16'),(212,'35.236.7.13','2018/10/12','04:16'),(213,'127.0.0.1','2018/10/12','04:16'),(214,'127.0.0.1','2018/10/12','04:17'),(215,'127.0.0.1','2018/10/12','04:17'),(216,'127.0.0.1','2018/10/12','04:17'),(217,'127.0.0.1','2018/10/12','04:18'),(218,'127.0.0.1','2018/10/12','04:18'),(219,'127.0.0.1','2018/10/12','04:18'),(220,'127.0.0.1','2018/10/12','04:18'),(221,'127.0.0.1','2018/10/12','04:19'),(222,'127.0.0.1','2018/10/12','04:19'),(223,'127.0.0.1','2018/10/12','04:19'),(224,'127.0.0.1','2018/10/12','04:19'),(225,'35.198.48.57','2018/10/12','04:23'),(226,'127.0.0.1','2018/10/12','04:24'),(227,'127.0.0.1','2018/10/12','04:25'),(228,'127.0.0.1','2018/10/12','04:26'),(229,'127.0.0.1','2018/10/12','04:26'),(230,'127.0.0.1','2018/10/12','04:26'),(231,'127.0.0.1','2018/10/12','04:26'),(232,'127.0.0.1','2018/10/12','04:26'),(233,'127.0.0.1','2018/10/12','04:27'),(234,'170.80.43.144','2018/10/12','04:27'),(235,'127.0.0.1','2018/10/12','04:27'),(236,'127.0.0.1','2018/10/12','04:28'),(237,'127.0.0.1','2018/10/12','04:28'),(238,'35.221.3.38','2018/10/12','04:29'),(239,'127.0.0.1','2018/10/12','04:30'),(240,'127.0.0.1','2018/10/12','04:31'),(241,'127.0.0.1','2018/10/12','04:31'),(242,'127.0.0.1','2018/10/12','04:31'),(243,'127.0.0.1','2018/10/12','04:33'),(244,'127.0.0.1','2018/10/12','04:33'),(245,'127.0.0.1','2018/10/12','04:33'),(246,'127.0.0.1','2018/10/12','04:34'),(247,'127.0.0.1','2018/10/12','04:34'),(248,'127.0.0.1','2018/10/12','04:34'),(249,'127.0.0.1','2018/10/12','04:34'),(250,'127.0.0.1','2018/10/12','04:35'),(251,'127.0.0.1','2018/10/12','04:35'),(252,'127.0.0.1','2018/10/12','04:35'),(253,'127.0.0.1','2018/10/12','04:35'),(254,'127.0.0.1','2018/10/12','04:35'),(255,'127.0.0.1','2018/10/12','04:35'),(256,'127.0.0.1','2018/10/12','04:35'),(257,'127.0.0.1','2018/10/12','04:35'),(258,'127.0.0.1','2018/10/12','04:35'),(259,'127.0.0.1','2018/10/12','04:35'),(260,'127.0.0.1','2018/10/12','04:36'),(261,'127.0.0.1','2018/10/12','04:36'),(262,'127.0.0.1','2018/10/12','04:36'),(263,'127.0.0.1','2018/10/12','04:36'),(264,'127.0.0.1','2018/10/12','04:36'),(265,'127.0.0.1','2018/10/12','04:36'),(266,'127.0.0.1','2018/10/12','04:36'),(267,'127.0.0.1','2018/10/12','04:37'),(268,'127.0.0.1','2018/10/12','04:37'),(269,'127.0.0.1','2018/10/12','04:37'),(270,'127.0.0.1','2018/10/12','04:37'),(271,'127.0.0.1','2018/10/12','04:37'),(272,'127.0.0.1','2018/10/12','04:37'),(273,'127.0.0.1','2018/10/12','04:37'),(274,'127.0.0.1','2018/10/12','04:38');
+/*!40000 ALTER TABLE `tb_visits` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping events for database 'db_blog'
 --
 
 --
 -- Dumping routines for database 'db_blog'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `sp_answers_save` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_answers_save`(
+pidanswer int(11),
+pnameuser varchar(150),
+pemail varchar(150),
+pphone varchar(20),
+pmessage text,
+panswer text,
+pidentification varchar(250),
+pactive varchar(10)
+)
+BEGIN
+	
+	IF pidanswer > 0 THEN
+		
+		UPDATE tb_answers
+        SET 
+			nameuser = pnameuser,
+            email = pemail,
+            phone = pphone,
+            message = pmessage,
+            answer = panswer,
+            identification = pidentification,
+            active = pactive
+        WHERE idanswer = pidanswer;
+        
+    ELSE
+		
+		INSERT INTO tb_answers (nameuser, email, phone, message, answer, identification, active) 
+        VALUES(pnameuser, pemail, pphone, pmessage, panswer, pidentification, pactive);
+        
+        SET pidanswer = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_answers WHERE idanswer = pidanswer;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_categories_save` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -674,4 +784,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-28 12:51:30
+-- Dump completed on 2018-10-11 23:39:35

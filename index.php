@@ -27,6 +27,7 @@ require_once("admin-users.php");
 require_once("admin-categories.php");
 require_once("admin-posts.php");
 require_once("admin-notices.php");
+require_once("admin-visits.php");
 
 $app->run();
 

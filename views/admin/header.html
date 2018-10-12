@@ -285,7 +285,9 @@ desired effect
 
         <li><a href="/admin/posts"><i class="fa fa-users"></i> <span>Posts</span></a></li>
 
-        <li><a href="/admin/notices"><i class="fa fa-users"></i> <span>Avisos</span></a></li>
+        <li><a href="/admin/notices"><i class="fa fa-users"></i> <span>Avisos / Notificações</span></a></li>
+
+        <li><a href="/admin/visits"><i class="fa fa-users"></i> <span>Visitantes do Site</span></a></li>
 
         <li><a href="/" target="_blank"><i class="fa fa-link"></i> <span>Visulizar blog</span></a></li>
 

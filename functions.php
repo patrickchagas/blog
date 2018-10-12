@@ -3,7 +3,9 @@
 use \Pcode\Model\User;
 use \Pcode\Model\Post;
 use \Pcode\Model\Notice;
+use \Pcode\Model\Visits;
 use \Pcode\Db\Sql;
+
 
 function formatDate($date)
 {
@@ -82,6 +84,17 @@ function getUsersNrQtd()
 	$totals = $user->getUsersTotals();
 
 	return $totals['nrqtd'];
+
+}
+
+function countVisits()
+{
+
+	$visits = new Visits();
+
+	$count = $visits->countVisits();
+
+	return $count['nrqtd'];
 
 }
 
