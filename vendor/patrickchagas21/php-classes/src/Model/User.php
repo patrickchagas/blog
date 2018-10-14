@@ -61,14 +61,61 @@ class User extends Model {
 		}
 	}
 
+	//Pegar a hora que o usuário fez o LOGIN
+	public function loginTimeConnect()
+	{
+
+		$sql = new Sql();
+
+		$user = new User();
+
+		$user->setData($_POST);
+
+		$login = $_POST['login']; // pegar o login que o usuário digitou no campo
+
+		$disconnect = 0; // Quando o USUÁRIO FIZER LOGIN, A HORA QUE ELE SAIU(timelogindisconnect) DO SISTEMA TEM QUE SER VAZIA, PQ ELE NÃO DESLOGOU NOVAMENTE
+		//PQ SE ELE LOGOU NO SISTEMA, NÃO FAZ SENTIDO JÁ TER A HORA QUE DESLOGOU
+		
+		//Inserindo a data que o usuário logou
+
+		date_default_timezone_set('America/Sao_Paulo'); // definindo o fuso horário
+
+		$dataAtual = date("d/m/Y H:i:s"); // pegando a hora atual
+
+		$update = $sql->select("UPDATE tb_users SET timelogindisconnect = '$disconnect' AND timeloginconnect = '$dataAtual' WHERE login = '$login' ");
+	}
+
+	//Pegar a hora que o usuário DESLOGOU DO SISTEMA
+	public function loginTimeDisconnect()
+	{
+
+		$sql = new Sql();
+
+		$user = new User();
+
+		$login = $_SESSION['User']['iduser']; // Pegar o ID da SESSION do usuário
+
+		//Inserindo a data que o usuário logou
+
+		date_default_timezone_set('America/Sao_Paulo'); // definindo o fuso horário
+
+		$dataAtual = date("d/m/Y H:i:s"); // pegando a hora atual
+
+		$update = $sql->select("UPDATE tb_users SET timelogindisconnect = '$dataAtual' WHERE iduser = '$login' ");
+	}
+
 	//Ver se existe o login
 	public static function login($login, $password) 
 	{	
 
 		$sql = new Sql();
 
+		$user = new User();
+
+		$user->loginTimeConnect();
+
 		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.login = :LOGIN", array(
-		     ":LOGIN"=>$login
+			":LOGIN"=>$login
 		));
 
 		//Verificar se encotrou algum login
@@ -123,7 +170,11 @@ class User extends Model {
 
 	//deslogar do sistema
 	public static function logout()
-	{
+	{	
+
+		$user = new User();
+
+		$user->loginTimeDisconnect();
 
 		$_SESSION[User::SESSION] = NULL;
 
