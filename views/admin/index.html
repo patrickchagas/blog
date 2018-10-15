@@ -247,7 +247,16 @@
                     <li>
                       <img src="{$value.desphoto}" alt="User Image" class="widget-user">
                       <a class="users-list-name" href="#">{$value.person}</a>
-                      <span class="users-list-date">Status: Em Breve</span>
+                      <span class="users-list-date">
+                        {if="$value.status === 'Online' "}
+
+                          <i class="fa fa-circle text-success"></i> Status: {$value.status}
+
+                          {else}
+
+                          <i class="fa fa-circle text-danger"></i> Status: {$value.status} 
+                        {/if}   
+                      </span>
                     </li>
                     {/loop}
                   </ul>

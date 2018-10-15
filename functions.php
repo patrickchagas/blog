@@ -87,6 +87,7 @@ function getUsersNrQtd()
 
 }
 
+//Mostra contagem de visitas no site
 function countVisits()
 {
 
@@ -95,6 +96,18 @@ function countVisits()
 	$count = $visits->countVisits();
 
 	return $count['nrqtd'];
+
+}
+
+function userStatus()
+{
+
+	$user = new User();
+
+	$user = User::listAll();
+
+	var_dump($user);
+	exit;
 
 }
 

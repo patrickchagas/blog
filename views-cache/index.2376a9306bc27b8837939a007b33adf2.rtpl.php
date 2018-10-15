@@ -251,7 +251,19 @@
                     <li>
                       <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="User Image" class="widget-user">
                       <a class="users-list-name" href="#"><?php echo htmlspecialchars( $value1["person"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a>
-                      <span class="users-list-date">Status: Em Breve</span>
+                      <span class="users-list-date">
+                        <?php if( $value1["status"] === 'Online'  ){ ?>
+
+
+                          <i class="fa fa-circle text-success"></i> Status: <?php echo htmlspecialchars( $value1["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+
+                          <?php }else{ ?>
+
+
+                          <i class="fa fa-circle text-danger"></i> Status: <?php echo htmlspecialchars( $value1["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?> 
+                        <?php } ?>   
+                      </span>
                     </li>
                     <?php } ?>
 

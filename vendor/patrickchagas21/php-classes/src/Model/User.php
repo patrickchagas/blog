@@ -82,7 +82,10 @@ class User extends Model {
 
 		$dataAtual = date("d/m/Y H:i:s"); // pegando a hora atual
 
-		$update = $sql->select("UPDATE tb_users SET timelogindisconnect = '$disconnect' AND timeloginconnect = '$dataAtual' WHERE login = '$login' ");
+		//QUANDO ELE LOGAR, VAI REGISTRAR O HORA DA ENTRADA E O STATUS MUDARÁ PARA ONLINE
+
+		$update = $sql->select("UPDATE tb_users SET  timeloginconnect = '$dataAtual', timelogindisconnect = '$disconnect', status = 'Online'  WHERE login = '$login' ");
+
 	}
 
 	//Pegar a hora que o usuário DESLOGOU DO SISTEMA
@@ -101,7 +104,9 @@ class User extends Model {
 
 		$dataAtual = date("d/m/Y H:i:s"); // pegando a hora atual
 
-		$update = $sql->select("UPDATE tb_users SET timelogindisconnect = '$dataAtual' WHERE iduser = '$login' ");
+		//QUANDO ELE DESLOGAR, VAI REGISTRAR O HORA DA SAÍDA E O STATUS MUDARÁ PARA OFFLINE
+
+		$update = $sql->select("UPDATE tb_users SET status = 'Offline', timelogindisconnect = '$dataAtual' WHERE iduser = '$login' ");
 	}
 
 	//Ver se existe o login
