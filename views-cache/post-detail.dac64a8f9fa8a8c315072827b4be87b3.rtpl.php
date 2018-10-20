@@ -15,18 +15,40 @@
 				<div class="col-md-12 col-lg-8">
 					<img src="<?php echo htmlspecialchars( $post["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
 					<h3 class="mt-30"><b><?php echo htmlspecialchars( $post["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b></h3>
-					<ul class="list-li-mr-20 mtb-15">
-						<li>by <a href="#"><b><?php echo htmlspecialchars( $post["publishedby"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </b></a> <?php echo formatDate($post["dtregister"]); ?></li>
 
-						<li><a class="btn-brdr-grey btn-b-sm plr-15 mr-10 mt-5" id="addCount" href="#"><b>LIKE</b></a></li>
+					<form action="/posts/<?php echo htmlspecialchars( $post["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="POST">
+						<ul class="list-li-mr-20 mtb-15">
+							<li>by <a href="#"><b><?php echo htmlspecialchars( $post["publishedby"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </b></a> <?php echo formatDate($post["dtregister"]); ?></li>
+
+							<!-- <li><a class="btn-brdr-grey btn-b-sm plr-15 mr-10 mt-5" id="addCount" href="#"><b>LIKE</b></a></li> -->
+
+							<li>
+								<button name="like" value="like" style="font-size:18px">
+								Gostei
+									<i class="fas fa-thumbs-up fa-1x"></i>
+								</button>
+
+								<!-- MOSTRAR O NÚMERO DE LIKES -->
+								<?php echo countLikes(); ?> 
 						
-						<li><i id="num" class="color-primary mr-5 font-12 ion-ios-bolt"></i>
-						
-						<?php echo htmlspecialchars( $post["visits"], ENT_COMPAT, 'UTF-8', FALSE ); ?> numero de visitas</li>
+
+							</li>
+
+							<li>
+								<button name="dislike" value="dislike" style="font-size:18px">Não Gostei
+									<i class="fas fa-thumbs-down fa-1x"></i>
+								</button>
+								<?php echo countDislikes(); ?>
+
+							</li>
 							
-						<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>30</li>
-					</ul>
-					
+							<li><i id="num" class="color-primary mr-5 font-12 ion-ios-bolt"></i>
+							
+							<?php echo htmlspecialchars( $post["visits"], ENT_COMPAT, 'UTF-8', FALSE ); ?> numero de visitas</li>
+								
+							<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>30</li>
+						</ul>
+					</form>
 					<p class="mtb-20"><?php echo textStyle($post["description"]); ?></p>
 						
 

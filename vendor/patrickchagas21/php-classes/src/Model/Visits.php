@@ -31,6 +31,8 @@ class Visits extends Model{
 	public function __construct()
 	{
 
+		date_default_timezone_set("America/Sao_Paulo");
+
 		$this->id=0;
 
 		$this->ip=$_SERVER['REMOTE_ADDR'];

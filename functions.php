@@ -2,6 +2,7 @@
 
 use \Pcode\Model\User;
 use \Pcode\Model\Post;
+use \Pcode\Model\PostRating;
 use \Pcode\Model\Notice;
 use \Pcode\Model\Visits;
 use \Pcode\Db\Sql;
@@ -99,17 +100,26 @@ function countVisits()
 
 }
 
-function userStatus()
+function countLikes()
 {
 
-	$user = new User();
+	$postrating = new PostRating();
 
-	$user = User::listAll();
+	$count = $postrating->countLikes();
 
-	var_dump($user);
-	exit;
+	return $count['likes'];
 
 }
 
+function countDislikes()
+{
+
+	$postrating = new PostRating();
+
+	$count = $postrating->countDislikes();
+
+	return $count['dislike'];
+
+}
 
 ?>

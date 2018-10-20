@@ -43,6 +43,7 @@
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Login</th>
+                    <th>Status</th>
                     <th style="width: 60px">Admin</th>
                     <th style="width: 240px">&nbsp;</th>
                   </tr>

@@ -123,7 +123,7 @@ class User extends Model {
 			":LOGIN"=>$login
 		));
 
-		//Verificar se encotrou algum login
+		//Verificar se encontrou algum login
 		if (count($results) === 0) // se for 0, ele não encontrou nada
 		{
 
