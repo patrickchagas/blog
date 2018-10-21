@@ -41,8 +41,6 @@ class Visits extends Model{
 
 		$this->hora=date("H:i");
 
-		$this->iduser=$_SESSION['User']['person'];
-
 	}
 
 	//Verificar os dados do visitante
@@ -89,27 +87,19 @@ class Visits extends Model{
 
 		}else{
 
+		$iduser = $_SESSION['User']['person'];	
+
 		// Adicionar uma visita quando o usuário for CADASTRADO	
 		$results = $sql->select("INSERT INTO tb_visits VALUES (:idvisits, :ip, :datas, :hora, :iduser)", array(
 			":idvisits"=>$this->id,
 			":ip"=>$this->ip,
 			":datas"=>$this->data,
 			":hora"=>$this->hora,
-			':iduser'=>$this->iduser
+			':iduser'=>$iduser
 		));
 	}
-
-		// $this->VerifyUser();
-
+	
 		$this->setData($results);
-
-	}
-
-	public function visitsPost()
-	{
-		$sql = new Sql();
-
-
 
 	}
 

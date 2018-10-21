@@ -73,10 +73,11 @@ class PostRating extends Model{
 
 		User::verifyLogin(false); // É PRECISO ESTAR LOGADO PARA AVALIAR A POSTAGEM
 
+		$this->visitsPost();
+
 		$iduser = $_SESSION['User']['iduser']; // ID DO USUÁRIO
 
 		$ipuser = $_SERVER['REMOTE_ADDR']; // PEGAR O IP DO USUÁRIO
-
 
 		$desurl = $_SERVER['REQUEST_URI']; // PEGANDO O NOME DA POSTAGEM PASSADA NO LINK
 
@@ -130,6 +131,62 @@ class PostRating extends Model{
 		 	$update = $sql->select("UPDATE tb_ratings SET dislike = dislike+1 WHERE desurl = '$desurlName' AND iduser = '$iduser' LIMIT 1 ");
 
 		 	}
+		}
+	}
+
+	//Adicionar visitas em uma Postagem
+	public function visitsPost()
+	{
+		$sql = new Sql();
+
+		$iduser = $_SESSION['User']['iduser']; // ID DO USUÁRIO
+			
+		$desurl = $_SERVER['REQUEST_URI']; // PEGANDO O NOME DA POSTAGEM PASSADA NO LINK
+
+		$palavra = "posts/";
+
+		$q = strpos($desurl, $palavra);
+
+		//vc começa a partir da palavra e mais 3 letras e vai até o final dessa desurl
+		$desurlName = substr($desurl, $q + strlen($palavra), strlen($desurl));
+
+		$resultsSelect = $sql->select("SELECT * FROM tb_postsvisits WHERE desurl = '$desurlName' ");
+
+		if($resultsSelect > 0 && !$desurlName == $resultsSelect)
+		{
+
+			$sql->select("INSERT INTO tb_postsvisits (iduser, desurl, visits) VALUES ('$iduser', '$desurlName', 1)");	
+
+		} else {
+			$sql->select("UPDATE tb_postsvisits SET visits = visits+1, iduser = '$iduser' WHERE desurl = '$desurlName' ");
+
+		} 
+	}
+
+	//Contagem das visualizações por Postagem
+
+	public function countVisitsPost()
+	{
+
+		$desurl = $_SERVER['REQUEST_URI'];
+
+		$palavra = "posts/";
+
+		$q = strpos($desurl, $palavra);
+
+		//vc começa a partir da palavra e mais 3 letras e vai até o final dessa desurl
+		$desurlName = substr($desurl, $q + strlen($palavra), strlen($desurl));
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT SUM(visits) AS visits FROM tb_postsvisits WHERE desurl = '$desurlName' ");
+
+		if(count($results) > 0)
+		{
+			return $results[0];
+
+		} else {
+			return [];
 		}
 
 

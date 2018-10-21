@@ -123,4 +123,15 @@ function countDislikes()
 
 }
 
+//Contagem das visualizações por Postagem
+function countVisitsPost()
+{
+
+	$postrating = new PostRating();
+
+	$count = $postrating->countVisitsPost();
+
+	return $count['visits'];
+
+}
 ?>

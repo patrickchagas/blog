@@ -44,7 +44,7 @@
 							
 							<li><i id="num" class="color-primary mr-5 font-12 ion-ios-bolt"></i>
 							
-							<?php echo htmlspecialchars( $post["visits"], ENT_COMPAT, 'UTF-8', FALSE ); ?> numero de visitas</li>
+							<?php echo countVisitsPost(); ?> numero de visitas</li>
 								
 							<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>30</li>
 						</ul>

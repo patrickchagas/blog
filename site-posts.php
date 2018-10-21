@@ -13,6 +13,8 @@ $app->get('/posts/:desurl', function($desurl) {
 	$postrating->countLikes();  //Mostrar a contagem de LIKES
 	$postrating->countDislikes(); //Mostrar a contagem de DISLIKES
 
+	$postrating->visitsPost();
+
 	$post = new Post();
 
 	$post->getFromURL($desurl);
