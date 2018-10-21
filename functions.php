@@ -99,7 +99,7 @@ function countVisits()
 	return $count['nrqtd'];
 
 }
-
+//Mostrar a contagem de LIKES
 function countLikes()
 {
 
@@ -111,6 +111,7 @@ function countLikes()
 
 }
 
+//Mostrar a contagem de DISLIKES
 function countDislikes()
 {
 

@@ -74,6 +74,8 @@
 					</div><!-- row -->
 						
 					<?php require $this->checkTemplate("newsall");?>	
+
+					
 					
 				</div><!-- col-md-9 -->
 				

@@ -41,6 +41,8 @@ class Visits extends Model{
 
 		$this->hora=date("H:i");
 
+		$this->iduser=$_SESSION['User']['person'];
+
 	}
 
 	//Verificar os dados do visitante
@@ -74,16 +76,40 @@ class Visits extends Model{
 
 		$sql = new Sql();
 
-		$results = $sql->select("INSERT INTO tb_visits VALUES (:idvisits, :ip, :datas, :hora)", array(
+		if(!isset($_SESSION['User']['person'])){
+
+		// Adicionar uma visita quando o usuário for ANÔNIMO	
+		$results = $sql->select("INSERT INTO tb_visits VALUES (:idvisits, :ip, :datas, :hora, :iduser)", array(
 			":idvisits"=>$this->id,
 			":ip"=>$this->ip,
 			":datas"=>$this->data,
-			":hora"=>$this->hora
+			":hora"=>$this->hora,
+			':iduser'=>utf8_decode('Usuário Anônimo')
+			));	
+
+		}else{
+
+		// Adicionar uma visita quando o usuário for CADASTRADO	
+		$results = $sql->select("INSERT INTO tb_visits VALUES (:idvisits, :ip, :datas, :hora, :iduser)", array(
+			":idvisits"=>$this->id,
+			":ip"=>$this->ip,
+			":datas"=>$this->data,
+			":hora"=>$this->hora,
+			':iduser'=>$this->iduser
 		));
+	}
 
 		// $this->VerifyUser();
 
 		$this->setData($results);
+
+	}
+
+	public function visitsPost()
+	{
+		$sql = new Sql();
+
+
 
 	}
 

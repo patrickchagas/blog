@@ -10,8 +10,8 @@ $app->get('/posts/:desurl', function($desurl) {
 
 	$postrating = new PostRating();
 
-	$postrating->countLikes();
-	$postrating->countDislikes();
+	$postrating->countLikes();  //Mostrar a contagem de LIKES
+	$postrating->countDislikes(); //Mostrar a contagem de DISLIKES
 
 	$post = new Post();
 

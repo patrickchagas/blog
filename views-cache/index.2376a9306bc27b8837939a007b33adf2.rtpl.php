@@ -261,7 +261,10 @@
                           <?php }else{ ?>
 
 
-                          <i class="fa fa-circle text-danger"></i> Status: <?php echo htmlspecialchars( $value1["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?> 
+                          <i class="fa fa-circle text-danger"></i> 
+                            Status: <?php echo htmlspecialchars( $value1["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                            Último atividade: <?php echo htmlspecialchars( $value1["timelogindisconnect"], ENT_COMPAT, 'UTF-8', FALSE ); ?> 
                         <?php } ?>   
                       </span>
                     </li>
