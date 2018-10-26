@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -42,7 +42,7 @@
 
             <div class="form-group">
               <label for="publishedby">Publicado Por</label>
-              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Post publicado por" value="{function="getUserName()"}">
+              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Post publicado por" value="<?php echo getUserName(); ?>">
             </div>
 
             <div class="form-group">

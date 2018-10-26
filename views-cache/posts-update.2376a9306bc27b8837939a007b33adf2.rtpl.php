@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -18,26 +18,26 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/admin/posts/{$post.idpost}" method="post" enctype="multipart/form-data">
+        <form role="form" action="/admin/posts/<?php echo htmlspecialchars( $post["idpost"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" enctype="multipart/form-data">
           <div class="box-body">
             <div class="form-group">
               <label for="title">Nome da Postagem</label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Digite o Titulo da postagem" value="{$post.title}">
+              <input type="text" class="form-control" id="title" name="title" placeholder="Digite o Titulo da postagem" value="<?php echo htmlspecialchars( $post["title"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
               
             <div class="form-group">
               <label for="description">Descrição</label>
-              <textarea  type="text" class="form-control" id="editor1" name="description" placeholder="Digite sobre a postagem" rows="12" value="{$post.description}">{$post.description}</textarea>
+              <textarea  type="text" class="form-control" id="editor1" name="description" placeholder="Digite sobre a postagem" rows="12" value="<?php echo htmlspecialchars( $post["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $post["description"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
             </div>
 
             <div class="form-group">
               <label for="desurl">Url</label>
-              <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome da postagem" value="{$post.desurl}">
+              <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome da postagem" value="<?php echo htmlspecialchars( $post["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
 
             <div class="form-group">
               <label for="publishedby">Publicado por</label>
-              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Digite o nome da postagem" value="{$post.publishedby}">
+              <input type="text" class="form-control" id="publishedby" name="publishedby" placeholder="Digite o nome da postagem" value="<?php echo htmlspecialchars( $post["publishedby"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
 
             <div class="form-group">
@@ -54,7 +54,7 @@
               <input type="file" class="form-control" id="file" name="file" value="">
               <div class="box box-widget">
                 <div class="box-body">
-                  <img class="img-responsive" id="image-preview" src="{$post.desphoto}" alt="Photo" width="550px">
+                  <img class="img-responsive" id="image-preview" src="<?php echo htmlspecialchars( $post["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo" width="550px">
                 </div>
               </div>
             </div>

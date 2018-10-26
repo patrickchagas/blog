@@ -90,8 +90,8 @@
 <!-- REQUIRED JS SCRIPTS -->
 
 
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+<!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script> -->
 
 
 <!-- jQuery 3 -->
@@ -100,6 +100,16 @@
 <script src="/res/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/res/admin/dist/js/adminlte.min.js"></script>
+
+
+<script src="/res/admin/bower_components/ckeditor/ckeditor.js"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+  })
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

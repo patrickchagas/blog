@@ -77,12 +77,12 @@ class Visits extends Model{
 		if(!isset($_SESSION['User']['person'])){
 
 		// Adicionar uma visita quando o usuário for ANÔNIMO	
-		$results = $sql->select("INSERT INTO tb_visits VALUES (:idvisits, :ip, :datas, :hora, :iduser)", array(
-			":idvisits"=>$this->id,
-			":ip"=>$this->ip,
-			":datas"=>$this->data,
-			":hora"=>$this->hora,
-			':iduser'=>utf8_decode('Usuário Anônimo')
+			$results = $sql->select("INSERT INTO tb_visits VALUES (:idvisits, :ip, :datas, :hora, :iduser)", array(
+				":idvisits"=>$this->id,
+				":ip"=>$this->ip,
+				":datas"=>$this->data,
+				":hora"=>$this->hora,
+				':iduser'=>utf8_decode('Usuário Anônimo')
 			));	
 
 		}else{
